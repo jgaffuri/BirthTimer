@@ -105,10 +105,10 @@ function generateMilestones(start) {
   const maxMs = maxYears * 365.25 * 86400000;
   const now = new Date();
   const units = [
-    { name: 'seconde', factor: 1000 },
-    { name: 'minute', factor: 60000 },
-    { name: 'heure', factor: 3600000 },
-    { name: 'jour', factor: 86400000 },
+    { name: 'secondes', factor: 1000 },
+    { name: 'minutes', factor: 60000 },
+    { name: 'heures', factor: 3600000 },
+    { name: 'jours', factor: 86400000 },
     { name: 'mois', factor: 30.44 * 86400000 }
   ];
 
@@ -134,7 +134,10 @@ function generateMilestones(start) {
   list.innerHTML = "";
   milestones.forEach(m => {
     const isPow10 = isPowerOf10(m.value);
-    list.innerHTML += `<li>${isPow10 ? '<b>' : ''}${m.value} ${m.unit}${isPow10 ? '</b>' : ''} → ${m.date.toLocaleString('fr-FR')}</li>`;
+    const date_ = m.date.toLocaleDateString('fr-FR');
+    const time_ = m.date.toLocaleTimeString('fr-FR');
+    const formatted = `${date_}, à ${time_}`;
+    list.innerHTML += `<li>${isPow10 ? '<b>' : ''}${m.value.toLocaleString('fr-FR')} ${m.unit}${isPow10 ? '</b>' : ''}, le ${formatted}</li>`;
   });
 }
 
