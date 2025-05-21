@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Durées et Calendrier</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .section { margin-bottom: 20px; }
+    button { margin-right: 10px; padding: 8px 12px; }
+    ul { list-style-type: none; padding: 0; }
+    li { margin-bottom: 5px; }
+  </style>
+</head>
+<body>
+
+  <h1>Calcul des durées depuis une date</h1>
+
+  <div class="section">
+    <label>Date : <input type="date" id="dateInput"></label>
+    <label>Heure : <input type="time" id="timeInput"></label>
+    <button onclick="updateDurations()">Calculer</button>
+  </div>
+
+  <div class="section">
+    <h3>Écarts :</h3>
+    <ul id="durationList"></ul>
+  </div>
+
+  <div class="section">
+    <h3>Dates des jalons :</h3>
+    <ul id="milestoneList"></ul>
+    <button onclick="downloadICS()">Télécharger ICS</button>
+    <button onclick="copyGoogleCalendarLinks()">Tout copier pour Google Calendar</button>
+  </div>
+
+<script>
+let milestonesCache = [];
+
+function getURLParam(name) {
+  const params = new URLSearchParams(window.location.search);
+  return params.get(name);
+}
+
+function setDefaultDateTime() {
+  const dateInput = document.getElementById('dateInput');
+  const timeInput = document.getElementById('timeInput');
+  let startParam = getURLParam('start');
+  let start;
+
+  if (startParam) {
+    start = new Date(startParam);
+    if (isNaN(start)) {
+      alert("Format invalide pour le paramètre 'start'. Utiliser 'YYYY-MM-DDTHH:MM:SS'");
+      start = new Date();
+      start.setFullYear(start.getFullYear() - 25);
+    }
+  } else {
+    start = new Date();
+    start.setFullYear(start.getFullYear() - 25);
+  }
+
+  const yyyy = start.getFullYear();
+  const mm = String(start.getMonth() + 1).padStart(2, '0');
+  const dd = String(start.getDate()).padStart(2, '0');
+  dateInput.value = `${yyyy}-${mm}-${dd}`;
+
+  const hh = String(start.getHours()).padStart(2, '0');
+  const min = String(start.getMinutes()).padStart(2, '0');
+  const ss = String(start.getSeconds()).padStart(2, '0');
+  timeInput.value = `${hh}:${min}:${ss}`;
+}
+
+function updateDurations() {
+  const dateInput = document.getElementById('dateInput').value;
+  const timeInput = document.getElementById('timeInput').value;
+  if (!dateInput || !timeInput) return alert("Sélectionne date et heure.");
+  const start = new Date(`${dateInput}T${timeInput}`);
+  const now = new Date();
+  const durationMs = now - start;
+  if (durationMs <= 0) return alert("La date doit être dans le passé.");
+
+  const seconds = Math.floor(durationMs / 1000);
+  const minutes = Math.floor(durationMs / 60000);
+  const hours = Math.floor(durationMs / 3600000);
+  const days = Math.floor(durationMs / 86400000);
+  const months = Math.floor(days / 30.44);
+
+  const list = document.getElementById('durationList');
+  list.innerHTML = `
+    <li>${seconds} secondes</li>
+    <li>${minutes} minutes</li>
+    <li>${hours} heures</li>
+    <li>${days} jours</li>
+    <li>${months} mois</li>
+  `;
+
+  generateMilestones(start);
+}
+
+function isPowerOf10(n) {
+  return (Math.log10(n) % 1 === 0);
+}
+
+function generateMilestones(start) {
+  const maxYears = 100;
+  const maxMs = maxYears * 365.25 * 86400000;
+  const now = new Date();
+  const units = [
+    { name: 'seconde', factor: 1000 },
+    { name: 'minute', factor: 60000 },
+    { name: 'heure', factor: 3600000 },
+    { name: 'jour', factor: 86400000 },
+    { name: 'mois', factor: 30.44 * 86400000 }
+  ];
+
+  let milestones = [];
+
+  units.forEach(u => {
+    for (let exp = 0; exp <= 11; exp++) {
+      for (let m = 1; m < 10; m++) {
+        const value = m * Math.pow(10, exp);
+        const durationMs = value * u.factor;
+        if (durationMs > maxMs) break;
+        const milestoneDate = new Date(start.getTime() + durationMs);
+        if (milestoneDate > now)
+          milestones.push({ value, unit: u.name, date: milestoneDate, durationMs });
+      }
+    }
+  });
+
+  milestones.sort((a, b) => a.durationMs - b.durationMs);
+  milestonesCache = milestones;
+
+  const list = document.getElementById('milestoneList');
+  list.innerHTML = "";
+  milestones.forEach(m => {
+    const isPow10 = isPowerOf10(m.value);
+    list.innerHTML += `<li>${isPow10 ? '<b>' : ''}${m.value} ${m.unit}${isPow10 ? '</b>' : ''} → ${m.date.toLocaleString('fr-FR')}</li>`;
+  });
+}
+
+function downloadICS() {
+  let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Durées//EN\n";
+  milestonesCache.forEach(m => {
+    ics += `BEGIN:VEVENT\nSUMMARY:${m.value} ${m.unit}\nDTSTART:${formatICSDate(m.date)}\nDTEND:${formatICSDate(new Date(m.date.getTime() + 3600000))}\nEND:VEVENT\n`;
+  });
+  ics += "END:VCALENDAR";
+  const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "jalons.ics";
+  link.click();
+}
+
+function formatICSDate(d) {
+  return d.toISOString().replace(/[-:]/g, '').split('.')[0] + "Z";
+}
+
+function copyGoogleCalendarLinks() {
+  const links = milestonesCache.map(m => {
+    const start = encodeURIComponent(m.date.toISOString().replace(/[-:]/g, '').split('.')[0] + "Z");
+    const end = encodeURIComponent(new Date(m.date.getTime() + 3600000).toISOString().replace(/[-:]/g, '').split('.')[0] + "Z");
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(m.value + ' ' + m.unit)}&dates=${start}%2F${end}`;
+  }).join("\n");
+
+  navigator.clipboard.writeText(links).then(() => {
+    alert("Liens Google Calendar copiés !");
+  });
+}
+
+setDefaultDateTime();
+</script>
+</body>
+</html>
