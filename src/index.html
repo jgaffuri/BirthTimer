@@ -13,21 +13,20 @@
 </head>
 <body>
 
-  <h1>Calcul des durées depuis une date</h1>
+  <h1>Joyeux X-iversaire !</h1>
 
   <div class="section">
-    <label>Date : <input type="date" id="dateInput"></label>
-    <label>Heure : <input type="time" id="timeInput"></label>
-    <button onclick="updateDurations()">Calculer</button>
+    <label>Date de naissance : <input type="date" id="dateInput"></label>
+    <label>à : <input type="time" id="timeInput"></label>
   </div>
 
   <div class="section">
-    <h3>Écarts :</h3>
+    <h3>Mon âge</h3>
     <ul id="durationList"></ul>
   </div>
 
   <div class="section">
-    <h3>Dates des jalons :</h3>
+    <h3>Mes prochains X-iversaires</h3>
     <ul id="milestoneList"></ul>
     <button onclick="downloadICS()">Télécharger ICS</button>
     <button onclick="copyGoogleCalendarLinks()">Tout copier pour Google Calendar</button>
@@ -168,7 +167,11 @@ function copyGoogleCalendarLinks() {
   });
 }
 
+document.getElementById('dateInput').addEventListener('change', updateDurations);
+document.getElementById('timeInput').addEventListener('change', updateDurations);
+window.onload = setDefaultDateTime;
 setDefaultDateTime();
+updateDurations();
 </script>
 </body>
 </html>
