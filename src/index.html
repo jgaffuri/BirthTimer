@@ -86,11 +86,11 @@ function updateDurations() {
 
   const list = document.getElementById('durationList');
   list.innerHTML = `
-    <li>${seconds} secondes</li>
-    <li>${minutes} minutes</li>
-    <li>${hours} heures</li>
-    <li>${days} jours</li>
-    <li>${months} mois</li>
+    <li>${seconds.toLocaleString('fr-FR')} secondes</li>
+    <li>${minutes.toLocaleString('fr-FR')} minutes</li>
+    <li>${hours.toLocaleString('fr-FR')} heures</li>
+    <li>${days.toLocaleString('fr-FR')} jours</li>
+    <li>${months.toLocaleString('fr-FR')} mois</li>
   `;
 
   generateMilestones(start);
