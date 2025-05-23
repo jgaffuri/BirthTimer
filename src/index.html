@@ -190,8 +190,7 @@
         const isPow10 = isPowerOf10(m.value);
         const date_ = m.date.toLocaleDateString('fr-FR');
         const time_ = m.date.toLocaleTimeString('fr-FR');
-        const formatted = `${date_}, à ${time_}`;
-        list.innerHTML += `<li>${isPow10 ? '<b>' : ''}${m.value.toLocaleString('fr-FR')} ${m.unit}${isPow10 ? '</b>' : ''}, le ${formatted}</li>`;
+        list.innerHTML += `<li>Le ${date_} à ${time_}: ${isPow10 ? '<b>' : ''}${m.value.toLocaleString('fr-FR')} ${m.unit}${isPow10 ? '</b>' : ''}</li>`;
       });
     }
 

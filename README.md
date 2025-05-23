@@ -1,5 +1,6 @@
 # BirthTimer
-Why to celebrate your birthday only every year ?
+
+Why to celebrate your birthday every year, only ?
 
 https://jgaffuri.github.io/BirthTimer/src/index.html
 
