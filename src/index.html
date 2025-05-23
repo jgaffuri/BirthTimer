@@ -226,14 +226,21 @@
       const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
       const link = document.createElement("a");
       link.href = URL.createObjectURL(blob);
-      link.download = "jalons.ics";
+      link.download = "birthx_calendar_" + simplifyString(personName) + ".ics";
       link.click();
     }
 
-
-
     function formatICSDate(d) {
       return d.toISOString().replace(/[-:]/g, '').split('.')[0] + "Z";
+    }
+
+    function simplifyString(str) {
+      return str
+        .normalize("NFD")                      // decompose accented characters
+        .replace(/[\u0300-\u036f]/g, "")       // remove diacritics
+        .replace(/[^a-zA-Z0-9\s]/g, "")        // remove strange characters (keep alphanumerics and spaces)
+        .trim()                                // trim leading/trailing spaces
+        .replace(/\s+/g, "_");                 // replace spaces with underscores
     }
 
     function copyGoogleCalendarLinks() {
