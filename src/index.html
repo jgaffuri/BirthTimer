@@ -225,7 +225,7 @@
       const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
       const link = document.createElement("a");
       link.href = URL.createObjectURL(blob);
-      link.download = "birthx_calendar_" + simplifyString(personName) + ".ics";
+      link.download = "bx_" + simplifyString(personName) + ".ics";
       link.click();
     }
 
@@ -239,6 +239,7 @@
         .replace(/[\u0300-\u036f]/g, "")       // remove diacritics
         .replace(/[^a-zA-Z0-9\s]/g, "")        // remove strange characters (keep alphanumerics and spaces)
         .trim()                                // trim leading/trailing spaces
+        .toLowerCase()
         .replace(/\s+/g, "_");                 // replace spaces with underscores
     }
 
