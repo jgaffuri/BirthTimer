@@ -196,12 +196,33 @@
     }
 
 
+
     function downloadICS() {
+      // Affiche la boîte de dialogue
+      document.getElementById('icsDialog').style.display = 'flex';
+    }
+
+    function cancelICSDialog() {
+      document.getElementById('icsDialog').style.display = 'none';
+    }
+
+    function validateICSDialog() {
+      const personName = document.getElementById('personNameInput').value.trim() || "Moi";
+      document.getElementById('icsDialog').style.display = 'none';
+
+      const selectedUnits = Array.from(document.querySelectorAll('.filterUnit:checked'))
+        .map(cb => cb.value);
+
       let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Durées//EN\n";
       milestonesCache.forEach(m => {
-        ics += `BEGIN:VEVENT\nSUMMARY:${m.value} ${m.unit}\nDTSTART:${formatICSDate(m.date)}\nDTEND:${formatICSDate(new Date(m.date.getTime() + 3600000))}\nEND:VEVENT\n`;
+        if (!selectedUnits.includes(m.unit)) return;
+        const dateStr = m.date.toLocaleDateString('fr-FR');
+        const timeStr = m.date.toLocaleTimeString('fr-FR');
+        const summary = `${m.value.toLocaleString('fr-FR')} ${m.unit} de ${personName} le ${dateStr} à ${timeStr}`;
+        ics += `BEGIN:VEVENT\nSUMMARY:${summary}\nDTSTART:${formatICSDate(m.date)}\nDTEND:${formatICSDate(new Date(m.date.getTime() + 3600000))}\nEND:VEVENT\n`;
       });
       ics += "END:VCALENDAR";
+
       const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
       const link = document.createElement("a");
       link.href = URL.createObjectURL(blob);
@@ -209,9 +230,11 @@
       link.click();
     }
 
-    function formatICSDate(d) {
+
+
+    /*function formatICSDate(d) {
       return d.toISOString().replace(/[-:]/g, '').split('.')[0] + "Z";
-    }
+    }*/
 
     function copyGoogleCalendarLinks() {
       const links = milestonesCache.map(m => {
@@ -251,6 +274,19 @@
     };
 
   </script>
+
+
+  <div id="icsDialog"
+    style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1000; justify-content:center; align-items:center;">
+    <div style="background:white; padding:20px; border-radius:8px; max-width:300px; text-align:center;">
+      <h3>C'est pour souhaiter à qui ?</h3>
+      <input type="text" id="personNameInput" value="Moi" style="margin:10px 0; width:90%; padding:5px;">
+      <br>
+      <button onclick="validateICSDialog()">Valider</button>
+      <button onclick="cancelICSDialog()">Annuler</button>
+    </div>
+  </div>
+
 </body>
 
 </html>
