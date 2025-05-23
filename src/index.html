@@ -34,6 +34,7 @@
 
 <script>
 let milestonesCache = [];
+let timerInterval;
 
 function getURLParam(name) {
   const params = new URLSearchParams(window.location.search);
@@ -70,37 +71,49 @@ function setDefaultDateTime() {
 }
 
 function updateDurations() {
-  const dateInput = document.getElementById('dateInput').value;
-  const timeInput = document.getElementById('timeInput').value;
-  if (!dateInput || !timeInput) return alert("Sélectionne date et heure.");
-  const start = new Date(`${dateInput}T${timeInput}`);
+  const dateInputVal = document.getElementById('dateInput').value;
+  const timeInputVal = document.getElementById('timeInput').value;
+  if (!dateInputVal || !timeInputVal) return;
+
+  const start = new Date(`${dateInputVal}T${timeInputVal}`);
   const now = new Date();
   const durationMs = now - start;
-  if (durationMs <= 0) return alert("La date doit être dans le passé.");
+  if (durationMs <= 0) return;
 
   const seconds = Math.floor(durationMs / 1000);
   const minutes = Math.floor(durationMs / 60000);
   const hours = Math.floor(durationMs / 3600000);
   const days = Math.floor(durationMs / 86400000);
   const months = Math.floor(days / 30.44);
+  const years = Math.floor(months / 12);
 
   const list = document.getElementById('durationList');
   list.innerHTML = `
-    <li>${seconds.toLocaleString('fr-FR')} secondes</li>
-    <li>${minutes.toLocaleString('fr-FR')} minutes</li>
-    <li>${hours.toLocaleString('fr-FR')} heures</li>
-    <li>${days.toLocaleString('fr-FR')} jours</li>
+    <li>${years.toLocaleString('fr-FR')} années</li>
     <li>${months.toLocaleString('fr-FR')} mois</li>
+    <li>${days.toLocaleString('fr-FR')} jours</li>
+    <li>${hours.toLocaleString('fr-FR')} heures</li>
+    <li>${minutes.toLocaleString('fr-FR')} minutes</li>
+    <li>${seconds.toLocaleString('fr-FR')} secondes</li>
   `;
+}
 
-  generateMilestones(start);
+function startTimer() {
+  clearInterval(timerInterval);
+  updateDurations();
+  timerInterval = setInterval(updateDurations, 1000);
 }
 
 function isPowerOf10(n) {
   return (Math.log10(n) % 1 === 0);
 }
 
-function generateMilestones(start) {
+function generateMilestones() {
+  const dateInputVal = document.getElementById('dateInput').value;
+  const timeInputVal = document.getElementById('timeInput').value;
+  if (!dateInputVal || !timeInputVal) return;
+
+  const start = new Date(`${dateInputVal}T${timeInputVal}`);
   const maxYears = 100;
   const maxMs = maxYears * 365.25 * 86400000;
   const now = new Date();
@@ -170,11 +183,21 @@ function copyGoogleCalendarLinks() {
   });
 }
 
-document.getElementById('dateInput').addEventListener('change', updateDurations);
-document.getElementById('timeInput').addEventListener('change', updateDurations);
-window.onload = setDefaultDateTime;
-setDefaultDateTime();
-updateDurations();
+document.getElementById('dateInput').addEventListener('change', () => {
+  startTimer();
+  generateMilestones();
+});
+document.getElementById('timeInput').addEventListener('change', () => {
+  startTimer();
+  generateMilestones();
+});
+
+window.onload = () => {
+  setDefaultDateTime();
+  startTimer();
+  generateMilestones();
+};
+
 </script>
 </body>
 </html>
