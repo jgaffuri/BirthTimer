@@ -47,6 +47,14 @@
   <div class="section">
     <h3>Mes prochains X-iversaires</h3>
     <ul id="milestoneList"></ul>
+    <div class="section">
+      <label><input type="checkbox" class="filterUnit" value="secondes" checked> Secondes</label>
+      <label><input type="checkbox" class="filterUnit" value="minutes" checked> Minutes</label>
+      <label><input type="checkbox" class="filterUnit" value="heures" checked> Heures</label>
+      <label><input type="checkbox" class="filterUnit" value="jours" checked> Jours</label>
+      <label><input type="checkbox" class="filterUnit" value="mois" checked> Mois</label>
+      <label><input type="checkbox" class="filterUnit" value="années"> Années</label>
+    </div>
     <button onclick="downloadICS()">Télécharger ICS</button>
     <button onclick="copyGoogleCalendarLinks()">Tout copier pour Google Calendar</button>
   </div>
@@ -134,6 +142,7 @@
       return (Math.log10(n) % 1 === 0);
     }
 
+
     function generateMilestones() {
       const dateInputVal = document.getElementById('dateInput').value;
       const timeInputVal = document.getElementById('timeInput').value;
@@ -170,9 +179,14 @@
       milestones.sort((a, b) => a.durationMs - b.durationMs);
       milestonesCache = milestones;
 
+      // Récupère les unités sélectionnées
+      const selectedUnits = Array.from(document.querySelectorAll('.filterUnit:checked'))
+        .map(cb => cb.value);
+
       const list = document.getElementById('milestoneList');
       list.innerHTML = "";
       milestones.forEach(m => {
+        if (!selectedUnits.includes(m.unit)) return;
         const isPow10 = isPowerOf10(m.value);
         const date_ = m.date.toLocaleDateString('fr-FR');
         const time_ = m.date.toLocaleTimeString('fr-FR');
@@ -180,6 +194,7 @@
         list.innerHTML += `<li>${isPow10 ? '<b>' : ''}${m.value.toLocaleString('fr-FR')} ${m.unit}${isPow10 ? '</b>' : ''}, le ${formatted}</li>`;
       });
     }
+
 
     function downloadICS() {
       let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Durées//EN\n";
@@ -224,6 +239,10 @@
 
     document.getElementById('dateInput').addEventListener('change', onDateTimeChange);
     document.getElementById('timeInput').addEventListener('change', onDateTimeChange);
+
+    document.querySelectorAll('.filterUnit').forEach(cb => {
+      cb.addEventListener('change', generateMilestones);
+    });
 
     window.onload = () => {
       setDefaultDateTime();
