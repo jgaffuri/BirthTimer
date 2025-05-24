@@ -8,9 +8,7 @@ https://www.ahahah.eu/birthtimer/
 
 ## TODO
 
-- internationalise
-- smartphone
-- ical
+- smartphone compliance
 - improve style
 
 - show timeline ?
