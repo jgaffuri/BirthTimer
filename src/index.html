@@ -125,7 +125,6 @@
 
 
 
-
     function initPage() {
 
       let milestonesCache = [];
@@ -268,7 +267,7 @@
         const selectedUnits = Array.from(document.querySelectorAll('.filterUnit:checked'))
           .map(cb => cb.value);
 
-        let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Durées//EN\n";
+        let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//BirthTimer//EN\n";
         milestonesCache.forEach(m => {
           if (!selectedUnits.includes(m.unit)) return;
           const dateStr = m.date.toLocaleDateString(locale);
@@ -317,8 +316,8 @@
       function getShareContent() {
         return {
           url: encodeURIComponent(ahahahURL + window.location.search),
-          message: encodeURIComponent("Voici la liste de mes prochains x-iversaires ! N'oubliez pas de me les souhaiter :-)"),
-          title: encodeURIComponent("Joyeux x-iversaire!"),
+          message: encodeURIComponent(t.shareMessage),
+          title: encodeURIComponent(t.title),
         }
       }
 
@@ -353,11 +352,9 @@
 
       document.querySelectorAll('.filterUnit').forEach(cb => { cb.addEventListener('change', generateMilestones); });
 
-      //window.onload = () => {
       setDefaultDateTime();
       startTimer();
       generateMilestones();
-      //};
     }
 
   </script>
