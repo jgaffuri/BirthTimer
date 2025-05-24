@@ -38,6 +38,10 @@ h2 {
     margin-bottom: 10px;
 }
 
+ul {
+  list-style-type: none;
+}
+
 /* Footer styles */
 footer {
     text-align: center;
