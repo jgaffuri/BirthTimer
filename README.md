@@ -4,9 +4,6 @@ Why to celebrate your birthday every year, only ?
 
 https://www.ahahah.eu/birthtimer/
 
-Deprecated: https://jgaffuri.github.io/BirthTimer/src/
-
-
 ## TODO
 
 - better smartphone compliance

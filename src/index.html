@@ -31,11 +31,11 @@
       <ul id="milestoneList"></ul>
     </section>
     <section id="share">
-      <button id="downloadICS"></button>
-      <button id="share-facebook"></button>
-      <button id="share-whatsapp"></button>
-      <button id="share-linkedin"></button>
-      <button id="share-twitter"></button>
+      <a href="javascript:void(0);" id="icalButton"><img src="img/ical.png" alt="ICal" style="width:50px;height:50px;"></a>
+      <a href="javascript:void(0);" id="share-facebook"><img src="img/fb.png" alt="ICal" style="width:50px;height:50px;"></a>
+      <a href="javascript:void(0);" id="share-whatsapp"><img src="img/whatsapp.png" alt="ICal" style="width:50px;height:50px;"></a>
+      <a href="javascript:void(0);" id="share-linkedin"><img src="img/linkedin.png" alt="ICal" style="width:50px;height:50px;"></a>
+      <a href="javascript:void(0);" id="share-twitter"><img src="img/twitter.png" alt="ICal" style="width:50px;height:50px;"></a>
     </section>
   </main>
 
@@ -43,7 +43,7 @@
     style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1000; justify-content:center; align-items:center;">
     <div style="background:white; padding:20px; border-radius:8px; max-width:300px; text-align:center;">
       <h3 id="icsDialogTitle"></h3>
-      <input type="text" id="personNameInput" value="Moi" style="margin:10px 0; width:90%; padding:5px;">
+      <input type="text" id="personNameInput" value="Me" style="margin:10px 0; width:90%; padding:5px;">
       <br>
       <button id="validateBtn"></button>
       <button id="cancelBtn"></button>
@@ -79,11 +79,6 @@
       document.getElementById('atLabel').textContent = t.atLabel + " ";
       document.getElementById('myAge').innerText = t.myAge;
       document.getElementById('myNextMilestones').innerText = t.myNextMilestones;
-      document.getElementById('downloadICS').innerText = t.addToCalendar;
-      document.getElementById('share-facebook').innerText = t.shareFacebook;
-      document.getElementById('share-whatsapp').innerText = t.shareWhatsapp;
-      document.getElementById('share-linkedin').innerText = t.shareLinkedin;
-      document.getElementById('share-twitter').innerText = t.shareTwitter;
       document.getElementById('icsDialogTitle').innerText = t.icsDialogTitle;
       document.getElementById('validateBtn').innerText = t.validate;
       document.getElementById('cancelBtn').innerText = t.cancel;
@@ -240,16 +235,19 @@
 
 
       function downloadICS() {
-        // Affiche la boîte de dialogue
+        console.log("downloadICS")
         document.getElementById('icsDialog').style.display = 'flex';
       }
 
       function cancelICSDialog() {
+        console.log("cancelICSDialog")
         document.getElementById('icsDialog').style.display = 'none';
       }
+      document.getElementById('cancelBtn').addEventListener('click', cancelICSDialog)
 
       function validateICSDialog() {
-        const personName = document.getElementById('personNameInput').value.trim() || "Moi";
+        console.log("validateICSDialog")
+        const personName = document.getElementById('personNameInput').value.trim() || "Me";
         document.getElementById('icsDialog').style.display = 'none';
 
         const selectedUnits = Array.from(document.querySelectorAll('.filterUnit:checked'))
@@ -271,6 +269,7 @@
         link.download = "bx_" + simplifyString(personName) + ".ics";
         link.click();
       }
+      document.getElementById('validateBtn').addEventListener('click', validateICSDialog)
 
       function formatICSDate(d) {
         return d.toISOString().replace(/[-:]/g, '').split('.')[0] + "Z";
@@ -310,6 +309,9 @@
       }
 
       // Ajout des événements click sur les boutons
+
+      document.getElementById('icalButton').addEventListener('click', downloadICS)
+
       document.getElementById('share-facebook').addEventListener('click', function () {
         const c = getShareContent()
         var facebookUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + c.url + '&quote=' + c.message;
