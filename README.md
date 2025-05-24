@@ -9,7 +9,6 @@ Deprecated: https://jgaffuri.github.io/BirthTimer/src/
 
 ## TODO
 
-- title
 - smartphone compliance
 - improve style
 
