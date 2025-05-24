@@ -68,9 +68,18 @@
   </div>
 
   <script>
+
+    function getURLParam(name) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name);
+    }
+
     const supportedLangs = ["fr", "en", "de"];
-    const userLang = (navigator.language || navigator.userLanguage).substr(0, 2);
-    let lang = supportedLangs.includes(userLang) ? userLang : "en";
+    const paramLang = getURLParam("lang")
+    const locale = getURLParam("locale") || navigator.language || navigator.userLanguage
+    console.log(locale)
+    const userLang = locale.substr(0, 2);
+    let lang = supportedLangs.includes(paramLang) ? paramLang : supportedLangs.includes(userLang) ? userLang : "en";
     let t = {};
 
     fetch('lang.json')
@@ -107,26 +116,24 @@
       `;
     }
 
-    function initPage() {
 
+    function updateURLParam(name, value) {
+      const params = new URLSearchParams(window.location.search);
+      params.set(name, value);
+      const newUrl = `${window.location.pathname}?${params.toString()}`;
+      window.history.replaceState({}, '', newUrl);
+    }
+
+
+
+
+    function initPage() {
 
       // Ton code JS pour l'initialisation ici (setDefaultDateTime, startTimer etc.)
       // en reprenant les ID et callbacks comme dans ton fichier initial
 
       let milestonesCache = [];
       let timerInterval;
-
-      function getURLParam(name) {
-        const params = new URLSearchParams(window.location.search);
-        return params.get(name);
-      }
-
-      function updateURLParam(name, value) {
-        const params = new URLSearchParams(window.location.search);
-        params.set(name, value);
-        const newUrl = `${window.location.pathname}?${params.toString()}`;
-        window.history.replaceState({}, '', newUrl);
-      }
 
       function setDefaultDateTime() {
         const dateInput = document.getElementById('dateInput');
@@ -176,12 +183,12 @@
 
         const list = document.getElementById('durationList');
         list.innerHTML = `
-    <li>${years.toLocaleString('fr-FR')} années</li>
-    <li>${months.toLocaleString('fr-FR')} mois</li>
-    <li>${days.toLocaleString('fr-FR')} jours</li>
-    <li>${hours.toLocaleString('fr-FR')} heures</li>
-    <li>${minutes.toLocaleString('fr-FR')} minutes</li>
-    <li>${seconds.toLocaleString('fr-FR')} secondes</li>
+    <li>${years.toLocaleString('fr-FR')} ${t.years}</li>
+    <li>${months.toLocaleString('fr-FR')} ${t.months}</li>
+    <li>${days.toLocaleString('fr-FR')} ${t.days}</li>
+    <li>${hours.toLocaleString('fr-FR')} ${t.hours}</li>
+    <li>${minutes.toLocaleString('fr-FR')} ${t.minutes}</li>
+    <li>${seconds.toLocaleString('fr-FR')} ${t.seconds}</li>
   `;
       }
 
@@ -350,13 +357,13 @@
 
       document.querySelectorAll('.filterUnit').forEach(cb => { cb.addEventListener('change', generateMilestones); });
 
-      window.onload = () => {
-        setDefaultDateTime();
-        startTimer();
-        generateMilestones();
-      };
-
+      //window.onload = () => {
+      setDefaultDateTime();
+      startTimer();
+      generateMilestones();
+      //};
     }
+
   </script>
 
 </body>
