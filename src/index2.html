@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 
 <head>
   <meta charset="UTF-8">
@@ -74,9 +74,9 @@
       return params.get(name);
     }
 
-    const supportedLangs = ["fr", "en", "de"];
+    const supportedLangs = ["en", "fr", "de"];
     const paramLang = getURLParam("lang")
-    const locale = getURLParam("locale") || navigator.language || navigator.userLanguage
+    const locale = getURLParam("locale") || navigator.language || navigator.userLanguage || "en-IE"
     console.log(locale)
     const userLang = locale.substr(0, 2);
     let lang = supportedLangs.includes(paramLang) ? paramLang : supportedLangs.includes(userLang) ? userLang : "en";
@@ -183,12 +183,12 @@
 
         const list = document.getElementById('durationList');
         list.innerHTML = `
-    <li>${years.toLocaleString('fr-FR')} ${t.years}</li>
-    <li>${months.toLocaleString('fr-FR')} ${t.months}</li>
-    <li>${days.toLocaleString('fr-FR')} ${t.days}</li>
-    <li>${hours.toLocaleString('fr-FR')} ${t.hours}</li>
-    <li>${minutes.toLocaleString('fr-FR')} ${t.minutes}</li>
-    <li>${seconds.toLocaleString('fr-FR')} ${t.seconds}</li>
+    <li>${years.toLocaleString(locale)} ${t.years}</li>
+    <li>${months.toLocaleString(locale)} ${t.months}</li>
+    <li>${days.toLocaleString(locale)} ${t.days}</li>
+    <li>${hours.toLocaleString(locale)} ${t.hours}</li>
+    <li>${minutes.toLocaleString(locale)} ${t.minutes}</li>
+    <li>${seconds.toLocaleString(locale)} ${t.seconds}</li>
   `;
       }
 
@@ -248,9 +248,9 @@
         milestones.forEach(m => {
           if (!selectedUnits.includes(m.unit)) return;
           const isPow10 = isPowerOf10(m.value);
-          const date_ = m.date.toLocaleDateString('fr-FR');
-          const time_ = m.date.toLocaleTimeString('fr-FR');
-          list.innerHTML += `<li>Le ${date_} à ${time_}: ${isPow10 ? '<b>' : ''}${m.value.toLocaleString('fr-FR')} ${m.unit}${isPow10 ? '</b>' : ''}</li>`;
+          const date_ = m.date.toLocaleDateString(locale);
+          const time_ = m.date.toLocaleTimeString(locale);
+          list.innerHTML += `<li>Le ${date_} à ${time_}: ${isPow10 ? '<b>' : ''}${m.value.toLocaleString(locale)} ${m.unit}${isPow10 ? '</b>' : ''}</li>`;
         });
       }
 
@@ -275,9 +275,9 @@
         let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Durées//EN\n";
         milestonesCache.forEach(m => {
           if (!selectedUnits.includes(m.unit)) return;
-          const dateStr = m.date.toLocaleDateString('fr-FR');
-          const timeStr = m.date.toLocaleTimeString('fr-FR');
-          const summary = `${m.value.toLocaleString('fr-FR')} ${m.unit} de ${personName} le ${dateStr} à ${timeStr}`;
+          const dateStr = m.date.toLocaleDateString(locale);
+          const timeStr = m.date.toLocaleTimeString(locale);
+          const summary = `${m.value.toLocaleString(locale)} ${m.unit} de ${personName} le ${dateStr} à ${timeStr}`;
           ics += `BEGIN:VEVENT\nSUMMARY:${summary}\nDTSTART:${formatICSDate(m.date)}\nDTEND:${formatICSDate(new Date(m.date.getTime() + 3600000))}\nEND:VEVENT\n`;
         });
         ics += "END:VCALENDAR";
