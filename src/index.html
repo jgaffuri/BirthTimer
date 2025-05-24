@@ -228,7 +228,11 @@
           if (!selectedUnits.includes(m.unit)) return;
           const isPow10 = isPowerOf10(m.value);
           const date_ = m.date.toLocaleDateString(locale);
-          const time_ = m.date.toLocaleTimeString(locale);
+          //const time_ = m.date.toLocaleTimeString(locale);
+
+          const formatter = new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit' });
+          const time_ = formatter.format(m.date)
+
           list.innerHTML += `<li>${t.onLabel} ${date_} ${t.atLabel} ${time_}: ${isPow10 ? '<b>' : ''}${m.value.toLocaleString(locale)} ${m.label}${isPow10 ? '</b>' : ''}</li>`;
         });
       }
