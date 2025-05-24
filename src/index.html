@@ -274,33 +274,31 @@
 
 
     const ahahahURL = "https://www.ahahah.eu/birthtimer/"
+    function getShareContent() {
+      return {
+        url: encodeURIComponent(ahahahURL + window.location.search),
+        message: encodeURIComponent("Voici la liste de mes prochains x-iversaires ! N'oubliez pas de me les souhaiter :-)"),
+        title: encodeURIComponent("Joyeux x-iversaire!"),
+      }
+    }
 
     // Ajout des événements click sur les boutons
     document.getElementById('share-facebook').addEventListener('click', function () {
-      const message = "Voici la liste de mes prochains x-iversaires ! N'oubliez pas de me les souhaiter :-)";
-      const currentUrl = encodeURIComponent(ahahahURL + window.location.search);
-      const encodedMessage = encodeURIComponent(message);
-      var facebookUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + currentUrl + '&quote=' + encodedMessage;
-      //window.open(shareUrl, '_blank');
-      //const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}&quote=${encodedMessage}`;
+      const c = getShareContent()
+      var facebookUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + c.url + '&quote=' + c.message;
       window.open(facebookUrl, 'facebook-share-dialog', 'width=800,height=600');
     });
 
     document.getElementById('share-twitter').addEventListener('click', function () {
-      const message = "Voici la liste de mes prochains x-iversaires ! N'oubliez pas de me les souhaiter :-)";
-      const currentUrl = encodeURIComponent(ahahahURL + window.location.search);
-      const encodedMessage = encodeURIComponent(message);
-      const twitterUrl = `https://twitter.com/intent/tweet?text=${encodedMessage}&url=${currentUrl}`;
+      const c = getShareContent()
+      const twitterUrl = `https://twitter.com/intent/tweet?text=${c.message}&url=${c.url}`;
       window.open(twitterUrl, 'twitter-share-dialog', 'width=800,height=600');
     });
 
     document.getElementById('share-linkedin').addEventListener('click', function () {
-      const message = "Voici la liste de mes prochains x-iversaires ! N'oubliez pas de me les souhaiter :-)";
-      const currentUrl = encodeURIComponent(ahahahURL + window.location.search);
-      const encodedMessage = encodeURIComponent(message);
-      const title = encodeURIComponent("Joyeux x-iversaire!")
-      const linkedInUrl = `https://www.linkedin.com/sharing/share?url=${currentUrl}&title=${title}&summary=${encodedMessage}&source=BirthTimer`
-      //const linkedInUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}&title=${encodedMessage}`;
+      const c = getShareContent()
+      //const linkedInUrl = `https://www.linkedin.com/sharing/share?url=${c.url}&title=${c.title}&summary=${c.message}&source=BirthTimer`
+      const linkedInUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${c.url}&title=${c.message}`;
       window.open(linkedInUrl, 'linkedin-share-dialog', 'width=800,height=600');
     });
 
