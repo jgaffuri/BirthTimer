@@ -8,7 +8,6 @@ https://www.ahahah.eu/birthtimer/
 
 ## TODO
 
-- check how google calendar copy works
 - internationalise
 - improve style
 
