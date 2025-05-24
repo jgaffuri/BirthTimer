@@ -246,7 +246,7 @@
           const isPow10 = isPowerOf10(m.value);
           const date_ = m.date.toLocaleDateString(locale);
           const time_ = m.date.toLocaleTimeString(locale);
-          list.innerHTML += `<li>Le ${date_} ${t.atLabel} ${time_}: ${isPow10 ? '<b>' : ''}${m.value.toLocaleString(locale)} ${m.unit}${isPow10 ? '</b>' : ''}</li>`;
+          list.innerHTML += `<li>${t.onLabel} ${date_} ${t.atLabel} ${time_}: ${isPow10 ? '<b>' : ''}${m.value.toLocaleString(locale)} ${m.unit}${isPow10 ? '</b>' : ''}</li>`;
         });
       }
 
