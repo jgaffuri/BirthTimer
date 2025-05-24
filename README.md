@@ -2,9 +2,10 @@
 
 Why to celebrate your birthday every year, only ?
 
-https://jgaffuri.github.io/BirthTimer/src/
-
 https://www.ahahah.eu/birthtimer/
+
+Deprecated: https://jgaffuri.github.io/BirthTimer/src/
+
 
 ## TODO
 
