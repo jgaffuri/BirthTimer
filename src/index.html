@@ -27,6 +27,34 @@
     li {
       margin-bottom: 5px;
     }
+
+    .share-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .share-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #f0f0f0;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .share-button:hover {
+      background: #ddd;
+    }
+
+    .share-button svg {
+      width: 24px;
+      height: 24px;
+      fill: #333;
+    }
   </style>
 </head>
 
@@ -55,8 +83,13 @@
       <label><input type="checkbox" class="filterUnit" value="secondes" checked>Second-iversaires</label>
     </div>
     <ul id="milestoneList"></ul>
+
+    <button id="share-facebook">Partager sur Facebook</button>
+    <button id="share-twitter">Partager sur Twitter</button>
+    <button id="share-linkedin">Partager sur LinkedIn</button>
+    <br>
     <button onclick="downloadICS()">Télécharger ICS</button>
-    <button onclick="copyGoogleCalendarLinks()">Tout copier pour Google Calendar</button>
+    <button onclick="copyGoogleCalendarLinks()">Copier dans Google Calendar</button>
   </div>
 
   <script>
@@ -266,6 +299,35 @@
       startTimer();
       generateMilestones();
     }
+
+
+
+    // Message à partager
+    const message = "Voici la liste de mes prochains x-iversaires ! N'oubliez pas de me les souhaiter :-)";
+
+    // Encode le message et l'URL pour les intégrer dans les liens de partage
+    const encodedMessage = encodeURIComponent(message);
+    const currentUrl = encodeURIComponent(window.location.href);
+
+    // URL de partage pour chaque réseau social
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}&quote=${encodedMessage}`;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodedMessage}&url=${currentUrl}`;
+    const linkedInUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}&title=${encodedMessage}`;
+
+
+
+    // Ajout des événements click sur les boutons
+    document.getElementById('share-facebook').addEventListener('click', function () {
+      window.open(facebookUrl, 'facebook-share-dialog', 'width=800,height=600');
+    });
+
+    document.getElementById('share-twitter').addEventListener('click', function () {
+      window.open(twitterUrl, 'twitter-share-dialog', 'width=800,height=600');
+    });
+
+    document.getElementById('share-linkedin').addEventListener('click', function () {
+      window.open(linkedInUrl, 'linkedin-share-dialog', 'width=800,height=600');
+    });
 
     document.getElementById('dateInput').addEventListener('change', onDateTimeChange);
     document.getElementById('timeInput').addEventListener('change', onDateTimeChange);
