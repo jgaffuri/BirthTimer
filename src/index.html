@@ -280,7 +280,7 @@
     document.getElementById('share-whatsapp').addEventListener('click', function () {
       const c = getShareContent()
       var whatsappUrl = "https://api.whatsapp.com/send?text="+c.message+"%20"+c.url
-      window.open(whatsapp, 'whatsapp-share-dialog', 'width=800,height=600');
+      window.open(whatsappUrl, 'whatsapp-share-dialog', 'width=800,height=600');
     });
 
     document.getElementById('share-twitter').addEventListener('click', function () {
