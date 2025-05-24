@@ -56,12 +56,10 @@
     </div>
     <ul id="milestoneList"></ul>
 
+    <button onclick="downloadICS()">Télécharger ICS</button>
     <button id="share-facebook">Partager sur Facebook</button>
     <button id="share-linkedin">Partager sur LinkedIn</button>
     <button id="share-twitter">Partager sur Twitter/X</button>
-    <br>
-    <button onclick="downloadICS()">Télécharger ICS</button>
-    <button onclick="copyGoogleCalendarLinks()">Copier dans Google Calendar</button>
   </div>
 
   <script>
@@ -240,25 +238,14 @@
 
     function simplifyString(str) {
       return str
-        .normalize("NFD")                      // decompose accented characters
-        .replace(/[\u0300-\u036f]/g, "")       // remove diacritics
-        .replace(/[^a-zA-Z0-9\s]/g, "")        // remove strange characters (keep alphanumerics and spaces)
-        .trim()                                // trim leading/trailing spaces
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-zA-Z0-9\s]/g, "")
+        .trim()
         .toLowerCase()
-        .replace(/\s+/g, "_");                 // replace spaces with underscores
+        .replace(/\s+/g, "_");
     }
 
-    function copyGoogleCalendarLinks() {
-      const links = milestonesCache.map(m => {
-        const start = encodeURIComponent(m.date.toISOString().replace(/[-:]/g, '').split('.')[0] + "Z");
-        const end = encodeURIComponent(new Date(m.date.getTime() + 3600000).toISOString().replace(/[-:]/g, '').split('.')[0] + "Z");
-        return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(m.value + ' ' + m.unit)}&dates=${start}%2F${end}`;
-      }).join("\n");
-
-      navigator.clipboard.writeText(links).then(() => {
-        alert("Liens Google Calendar copiés !");
-      });
-    }
 
     function onDateTimeChange() {
       const dateInputVal = document.getElementById('dateInput').value;
