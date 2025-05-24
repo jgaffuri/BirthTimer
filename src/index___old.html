@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Joyeux X-iversaire !</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    button {
+      margin-right: 10px;
+      padding: 8px 12px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Joyeux X-iversaire !</h1>
+
+  <div class="section">
+    <label>Ma date de naissance : <input type="date" id="dateInput"></label>
+    <label>à : <input type="time" id="timeInput"></label>
+  </div>
+
+  <div class="section">
+    <h3>Mon âge</h3>
+    <ul id="durationList"></ul>
+  </div>
+
+  <div class="section">
+    <h3>Mes prochains X-iversaires</h3>
+    <div class="section">
+      <label><input type="checkbox" class="filterUnit" value="années">Anniversaires</label>
+      <label><input type="checkbox" class="filterUnit" value="mois" checked>Mois-iversaires</label>
+      <label><input type="checkbox" class="filterUnit" value="jours" checked>Jour-iversaires</label>
+      <label><input type="checkbox" class="filterUnit" value="heures" checked>Heur-iversaires</label>
+      <label><input type="checkbox" class="filterUnit" value="minutes" checked>Minut-iversaires</label>
+      <label><input type="checkbox" class="filterUnit" value="secondes" checked>Second-iversaires</label>
+    </div>
+    <ul id="milestoneList"></ul>
+
+    <button onclick="downloadICS()">Mettre dans mon agenda</button>
+    <button id="share-facebook">Partager sur Facebook</button>
+    <button id="share-whatsapp">Partager sur WhatsApp</button>
+    <button id="share-linkedin">Partager sur LinkedIn</button>
+    <button id="share-twitter">Partager sur Twitter/X</button>
+  </div>
+
+  <script>
+    let milestonesCache = [];
+    let timerInterval;
+
+    function getURLParam(name) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name);
+    }
+
+    function updateURLParam(name, value) {
+      const params = new URLSearchParams(window.location.search);
+      params.set(name, value);
+      const newUrl = `${window.location.pathname}?${params.toString()}`;
+      window.history.replaceState({}, '', newUrl);
+    }
+
+    function setDefaultDateTime() {
+      const dateInput = document.getElementById('dateInput');
+      const timeInput = document.getElementById('timeInput');
+      let startParam = getURLParam('start');
+      let start;
+
+      if (startParam) {
+        start = new Date(startParam);
+        if (isNaN(start)) start = null;
+      }
+
+      if (!start) {
+        start = new Date();
+        start.setFullYear(start.getFullYear() - 30);
+        const iso = start.toISOString();
+        updateURLParam('start', iso);
+      }
+
+      const yyyy = start.getFullYear();
+      const mm = String(start.getMonth() + 1).padStart(2, '0');
+      const dd = String(start.getDate()).padStart(2, '0');
+      dateInput.value = `${yyyy}-${mm}-${dd}`;
+
+      const hh = String(start.getHours()).padStart(2, '0');
+      const min = String(start.getMinutes()).padStart(2, '0');
+      const ss = String(start.getSeconds()).padStart(2, '0');
+      timeInput.value = `${hh}:${min}:${ss}`;
+    }
+
+    function updateDurations() {
+      const dateInputVal = document.getElementById('dateInput').value;
+      const timeInputVal = document.getElementById('timeInput').value;
+      if (!dateInputVal || !timeInputVal) return;
+
+      const start = new Date(`${dateInputVal}T${timeInputVal}`);
+      const now = new Date();
+      const durationMs = now - start;
+      if (durationMs <= 0) return;
+
+      const seconds = Math.floor(durationMs / 1000);
+      const minutes = Math.floor(durationMs / 60000);
+      const hours = Math.floor(durationMs / 3600000);
+      const days = Math.floor(durationMs / 86400000);
+      const months = Math.floor(days / 30.44);
+      const years = Math.floor(months / 12);
+
+      const list = document.getElementById('durationList');
+      list.innerHTML = `
+    <li>${years.toLocaleString('fr-FR')} années</li>
+    <li>${months.toLocaleString('fr-FR')} mois</li>
+    <li>${days.toLocaleString('fr-FR')} jours</li>
+    <li>${hours.toLocaleString('fr-FR')} heures</li>
+    <li>${minutes.toLocaleString('fr-FR')} minutes</li>
+    <li>${seconds.toLocaleString('fr-FR')} secondes</li>
+  `;
+    }
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      updateDurations();
+      timerInterval = setInterval(updateDurations, 1000);
+    }
+
+    function isPowerOf10(n) {
+      return (Math.log10(n) % 1 === 0);
+    }
+
+
+    function generateMilestones() {
+      const dateInputVal = document.getElementById('dateInput').value;
+      const timeInputVal = document.getElementById('timeInput').value;
+      if (!dateInputVal || !timeInputVal) return;
+
+      const start = new Date(`${dateInputVal}T${timeInputVal}`);
+      const maxYears = 100;
+      const maxMs = maxYears * 365.25 * 86400000;
+      const now = new Date();
+      const units = [
+        { name: 'secondes', factor: 1000 },
+        { name: 'minutes', factor: 60000 },
+        { name: 'heures', factor: 3600000 },
+        { name: 'jours', factor: 86400000 },
+        { name: 'mois', factor: 30.44 * 86400000 },
+        { name: 'années', factor: 365.25 * 86400000 }
+      ];
+
+      let milestones = [];
+
+      units.forEach(u => {
+        for (let exp = 0; exp <= 11; exp++) {
+          for (let m = 1; m < 10; m++) {
+            const value = m * Math.pow(10, exp);
+            const durationMs = value * u.factor;
+            if (durationMs > maxMs) break;
+            const milestoneDate = new Date(start.getTime() + durationMs);
+            if (milestoneDate > now)
+              milestones.push({ value, unit: u.name, date: milestoneDate, durationMs });
+          }
+        }
+      });
+
+      milestones.sort((a, b) => a.durationMs - b.durationMs);
+      milestonesCache = milestones;
+
+      // Récupère les unités sélectionnées
+      const selectedUnits = Array.from(document.querySelectorAll('.filterUnit:checked'))
+        .map(cb => cb.value);
+
+      const list = document.getElementById('milestoneList');
+      list.innerHTML = "";
+      milestones.forEach(m => {
+        if (!selectedUnits.includes(m.unit)) return;
+        const isPow10 = isPowerOf10(m.value);
+        const date_ = m.date.toLocaleDateString('fr-FR');
+        const time_ = m.date.toLocaleTimeString('fr-FR');
+        list.innerHTML += `<li>Le ${date_} à ${time_}: ${isPow10 ? '<b>' : ''}${m.value.toLocaleString('fr-FR')} ${m.unit}${isPow10 ? '</b>' : ''}</li>`;
+      });
+    }
+
+
+
+    function downloadICS() {
+      // Affiche la boîte de dialogue
+      document.getElementById('icsDialog').style.display = 'flex';
+    }
+
+    function cancelICSDialog() {
+      document.getElementById('icsDialog').style.display = 'none';
+    }
+
+    function validateICSDialog() {
+      const personName = document.getElementById('personNameInput').value.trim() || "Moi";
+      document.getElementById('icsDialog').style.display = 'none';
+
+      const selectedUnits = Array.from(document.querySelectorAll('.filterUnit:checked'))
+        .map(cb => cb.value);
+
+      let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Durées//EN\n";
+      milestonesCache.forEach(m => {
+        if (!selectedUnits.includes(m.unit)) return;
+        const dateStr = m.date.toLocaleDateString('fr-FR');
+        const timeStr = m.date.toLocaleTimeString('fr-FR');
+        const summary = `${m.value.toLocaleString('fr-FR')} ${m.unit} de ${personName} le ${dateStr} à ${timeStr}`;
+        ics += `BEGIN:VEVENT\nSUMMARY:${summary}\nDTSTART:${formatICSDate(m.date)}\nDTEND:${formatICSDate(new Date(m.date.getTime() + 3600000))}\nEND:VEVENT\n`;
+      });
+      ics += "END:VCALENDAR";
+
+      const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "bx_" + simplifyString(personName) + ".ics";
+      link.click();
+    }
+
+    function formatICSDate(d) {
+      return d.toISOString().replace(/[-:]/g, '').split('.')[0] + "Z";
+    }
+
+    function simplifyString(str) {
+      return str
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-zA-Z0-9\s]/g, "")
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, "_");
+    }
+
+
+    function onDateTimeChange() {
+      const dateInputVal = document.getElementById('dateInput').value;
+      const timeInputVal = document.getElementById('timeInput').value;
+      if (!dateInputVal || !timeInputVal) return;
+
+      const isoDate = new Date(`${dateInputVal}T${timeInputVal}`).toISOString();
+      updateURLParam('start', isoDate);
+
+      startTimer();
+      generateMilestones();
+    }
+
+
+    const ahahahURL = "https://www.ahahah.eu/birthtimer/"
+    function getShareContent() {
+      return {
+        url: encodeURIComponent(ahahahURL + window.location.search),
+        message: encodeURIComponent("Voici la liste de mes prochains x-iversaires ! N'oubliez pas de me les souhaiter :-)"),
+        title: encodeURIComponent("Joyeux x-iversaire!"),
+      }
+    }
+
+    // Ajout des événements click sur les boutons
+    document.getElementById('share-facebook').addEventListener('click', function () {
+      const c = getShareContent()
+      var facebookUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + c.url + '&quote=' + c.message;
+      window.open(facebookUrl, 'facebook-share-dialog', 'width=800,height=600');
+    });
+
+    document.getElementById('share-whatsapp').addEventListener('click', function () {
+      const c = getShareContent()
+      var whatsappUrl = "https://api.whatsapp.com/send?text="+c.message+"%20"+c.url
+      window.open(whatsappUrl, 'whatsapp-share-dialog', 'width=800,height=600');
+    });
+
+    document.getElementById('share-twitter').addEventListener('click', function () {
+      const c = getShareContent()
+      const twitterUrl = `https://twitter.com/intent/tweet?text=${c.message}&url=${c.url}`;
+      window.open(twitterUrl, 'twitter-share-dialog', 'width=800,height=600');
+    });
+
+    document.getElementById('share-linkedin').addEventListener('click', function () {
+      const c = getShareContent()
+      //const linkedInUrl = `https://www.linkedin.com/sharing/share?url=${c.url}&title=${c.title}&summary=${c.message}&source=BirthTimer`
+      const linkedInUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${c.url}&title=${c.message}`;
+      window.open(linkedInUrl, 'linkedin-share-dialog', 'width=800,height=600');
+    });
+
+    document.getElementById('dateInput').addEventListener('change', onDateTimeChange);
+    document.getElementById('timeInput').addEventListener('change', onDateTimeChange);
+
+    document.querySelectorAll('.filterUnit').forEach(cb => { cb.addEventListener('change', generateMilestones); });
+
+    window.onload = () => {
+      setDefaultDateTime();
+      startTimer();
+      generateMilestones();
+    };
+
+  </script>
+
+
+  <div id="icsDialog"
+    style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1000; justify-content:center; align-items:center;">
+    <div style="background:white; padding:20px; border-radius:8px; max-width:300px; text-align:center;">
+      <h3>C'est pour souhaiter à qui ?</h3>
+      <input type="text" id="personNameInput" value="Moi" style="margin:10px 0; width:90%; padding:5px;">
+      <br>
+      <button onclick="validateICSDialog()">Valider</button>
+      <button onclick="cancelICSDialog()">Annuler</button>
+    </div>
+  </div>
+
+</body>
+
+</html>
