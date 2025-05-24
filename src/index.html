@@ -56,8 +56,9 @@
     </div>
     <ul id="milestoneList"></ul>
 
-    <button onclick="downloadICS()">Télécharger ICS</button>
+    <button onclick="downloadICS()">Mettre dans mon agenda</button>
     <button id="share-facebook">Partager sur Facebook</button>
+    <button id="share-whatsapp">Partager sur WhatsApp</button>
     <button id="share-linkedin">Partager sur LinkedIn</button>
     <button id="share-twitter">Partager sur Twitter/X</button>
   </div>
@@ -274,6 +275,12 @@
       const c = getShareContent()
       var facebookUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + c.url + '&quote=' + c.message;
       window.open(facebookUrl, 'facebook-share-dialog', 'width=800,height=600');
+    });
+
+    document.getElementById('share-whatsapp').addEventListener('click', function () {
+      const c = getShareContent()
+      var whatsappUrl = "https://api.whatsapp.com/send?text="+c.message+"%20"+c.url
+      window.open(whatsapp, 'whatsapp-share-dialog', 'width=800,height=600');
     });
 
     document.getElementById('share-twitter').addEventListener('click', function () {
