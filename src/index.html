@@ -307,9 +307,7 @@
     document.getElementById('dateInput').addEventListener('change', onDateTimeChange);
     document.getElementById('timeInput').addEventListener('change', onDateTimeChange);
 
-    document.querySelectorAll('.filterUnit').forEach(cb => {
-      cb.addEventListener('change', generateMilestones);
-    });
+    document.querySelectorAll('.filterUnit').forEach(cb => { cb.addEventListener('change', generateMilestones); });
 
     window.onload = () => {
       setDefaultDateTime();
