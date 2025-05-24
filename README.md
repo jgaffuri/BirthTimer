@@ -9,10 +9,8 @@ Deprecated: https://jgaffuri.github.io/BirthTimer/src/
 
 ## TODO
 
-- smartphone compliance
+- better smartphone compliance
 - improve style
-
 - show timeline ?
 - Add link to github ?
-- add share button next to each item ?
-
+- Add share button next to each item ?
