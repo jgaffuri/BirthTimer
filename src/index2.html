@@ -77,7 +77,6 @@
     const supportedLangs = ["en", "fr", "de"];
     const paramLang = getURLParam("lang")
     const locale = getURLParam("locale") || navigator.language || navigator.userLanguage || "en-IE"
-    console.log(locale)
     const userLang = locale.substr(0, 2);
     let lang = supportedLangs.includes(paramLang) ? paramLang : supportedLangs.includes(userLang) ? userLang : "en";
     let t = {};
@@ -128,9 +127,6 @@
 
 
     function initPage() {
-
-      // Ton code JS pour l'initialisation ici (setDefaultDateTime, startTimer etc.)
-      // en reprenant les ID et callbacks comme dans ton fichier initial
 
       let milestonesCache = [];
       let timerInterval;
@@ -213,12 +209,12 @@
         const maxMs = maxYears * 365.25 * 86400000;
         const now = new Date();
         const units = [
-          { name: 'secondes', factor: 1000 },
-          { name: 'minutes', factor: 60000 },
-          { name: 'heures', factor: 3600000 },
-          { name: 'jours', factor: 86400000 },
-          { name: 'mois', factor: 30.44 * 86400000 },
-          { name: 'années', factor: 365.25 * 86400000 }
+          { name: t.seconds, factor: 1000 },
+          { name: t.minutes, factor: 60000 },
+          { name: t.hours, factor: 3600000 },
+          { name: t.days, factor: 86400000 },
+          { name: t.months, factor: 30.44 * 86400000 },
+          { name: t.years, factor: 365.25 * 86400000 }
         ];
 
         let milestones = [];
@@ -250,7 +246,7 @@
           const isPow10 = isPowerOf10(m.value);
           const date_ = m.date.toLocaleDateString(locale);
           const time_ = m.date.toLocaleTimeString(locale);
-          list.innerHTML += `<li>Le ${date_} à ${time_}: ${isPow10 ? '<b>' : ''}${m.value.toLocaleString(locale)} ${m.unit}${isPow10 ? '</b>' : ''}</li>`;
+          list.innerHTML += `<li>Le ${date_} ${t.atLabel} ${time_}: ${isPow10 ? '<b>' : ''}${m.value.toLocaleString(locale)} ${m.unit}${isPow10 ? '</b>' : ''}</li>`;
         });
       }
 
