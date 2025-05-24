@@ -74,7 +74,7 @@
       return params.get(name);
     }
 
-    const supportedLangs = ["en", "fr", "de"];
+    const supportedLangs = ["en", "fr", "de", "es", "pt", "it", "nl", "lb"];
     const paramLang = getURLParam("lang")
     const locale = getURLParam("locale") || navigator.language || navigator.userLanguage || "en-IE"
     const userLang = locale.substr(0, 2);
