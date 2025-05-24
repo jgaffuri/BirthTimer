@@ -3,7 +3,7 @@
 Why to celebrate your birthday every year, only ?
 
 https://jgaffuri.github.io/BirthTimer/src/
-https://wwww.ahahah.eu/birthtimer/
+https://www.ahahah.eu/birthtimer/
 
 ## TODO
 
