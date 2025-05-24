@@ -298,7 +298,8 @@
       const message = "Voici la liste de mes prochains x-iversaires ! N'oubliez pas de me les souhaiter :-)";
       const currentUrl = encodeURIComponent(ahahahURL + window.location.search);
       const encodedMessage = encodeURIComponent(message);
-      const linkedInUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}&title=${encodedMessage}`;
+      const title = encodeURIComponent("Joyeux x-iversaire!")
+      const linkedInUrl = `https://www.linkedin.com/sharing/share?url=${currentUrl}&title=${title}&summary=${encodedMessage}&source=BirthTimer`
       //const linkedInUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}&title=${encodedMessage}`;
       window.open(linkedInUrl, 'linkedin-share-dialog', 'width=800,height=600');
     });
