@@ -105,7 +105,7 @@
       document.getElementById('filters').innerHTML = `
         <label><input type="checkbox" class="filterUnit" value="y"> ${t.filterYears}</label>
         <label><input type="checkbox" class="filterUnit" value="mo" checked> ${t.filterMonths}</label>
-        <label><input type="checkbox" class="filterUnit" value="w" checked> ${t.week}</label>
+        <label><input type="checkbox" class="filterUnit" value="w" checked> ${t.filterWeeks}</label>
         <label><input type="checkbox" class="filterUnit" value="d" checked> ${t.filterDays}</label>
         <label><input type="checkbox" class="filterUnit" value="h" checked> ${t.filterHours}</label>
         <label><input type="checkbox" class="filterUnit" value="mi" checked> ${t.filterMinutes}</label>
@@ -179,7 +179,7 @@
         list.innerHTML = `
     <li>${years.toLocaleString(locale)} ${t.years}</li>
     <li>${months.toLocaleString(locale)} ${t.months}</li>
-    <li>${weeks.toLocaleString(locale)} ${t.week}</li>
+    <li>${weeks.toLocaleString(locale)} ${t.weeks}</li>
     <li>${days.toLocaleString(locale)} ${t.days}</li>
     <li>${hours.toLocaleString(locale)} ${t.hours}</li>
     <li>${minutes.toLocaleString(locale)} ${t.minutes}</li>
@@ -212,7 +212,7 @@
           { unit: "mi", label: t.minutes, factor: 60000 },
           { unit: "h", label: t.hours, factor: 3600000 },
           { unit: "d", label: t.days, factor: 86400000 },
-          { unit: "w", label: t.week, factor: 7 * 86400000 },
+          { unit: "w", label: t.weeks, factor: 7 * 86400000 },
           { unit: "mo", label: t.months, factor: 30.44 * 86400000 },
           { unit: "y", label: t.years, factor: 365.25 * 86400000 }
         ];
