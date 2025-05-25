@@ -6,7 +6,7 @@ https://www.ahahah.eu/birthtimer/
 
 ## TODO
 
-- link in title
+- produce logo.png
 - better smartphone compliance
 - improve style
 - social network logo transparency
@@ -15,3 +15,4 @@ https://www.ahahah.eu/birthtimer/
 - show timeline ?
 - Add link to github ?
 - Add share button next to each item ?
+
