@@ -21,6 +21,11 @@ header {
     text-align: center;
 }
 
+header h1 a {
+    color: inherit;
+    text-decoration: none;
+}
+
 /* Main content styles */
 main {
     margin: 20px 0;
