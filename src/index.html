@@ -21,6 +21,7 @@
 
   <header>
     <h1><a href="https://www.ahahah.eu/birthtimer/"><span id="title"></span></a></h1>
+    <p id="intro"></p>
   </header>
 
   <main>
@@ -88,7 +89,8 @@
 
     function applyTranslations() {
       document.title = t.title;
-      document.getElementById('title').innerText = t.title;
+      document.getElementById('title').innerText = t.intro;
+      //document.getElementById('intro').innerText = t.intro;
       document.getElementById('birthdateLabel').textContent = t.birthdateLabel + " ";
       document.getElementById('atLabel').textContent = t.atLabel + " ";
       document.getElementById('myAge').innerText = t.myAge;
