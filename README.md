@@ -6,12 +6,12 @@ https://www.ahahah.eu/birthtimer/
 
 ## TODO
 
+- social network logo transparency
+- translate "Me"
 - add sentence "Why to celebrate birthdays every year... only ?"
 - show logo.png on page ?
 - better smartphone compliance
 - improve style
-- social network logo transparency
-- translate "Me"
 - favicon
 - add transkations: DK, NO, JP, IN, etc.
 - show timeline ?
