@@ -7,7 +7,6 @@ https://www.ahahah.eu/birthtimer/
 ## TODO
 
 - week
-- translate "Me"
 - add sentence "Why to celebrate birthdays every year, only ?"
 - show logo.png on page ?
 - better smartphone compliance

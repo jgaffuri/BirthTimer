@@ -94,6 +94,7 @@
       document.getElementById('myAge').innerText = t.myAge;
       document.getElementById('myNextMilestones').innerText = t.myNextMilestones;
       document.getElementById('icsDialogTitle').innerText = t.icsDialogTitle;
+      document.getElementById('personNameInput').value = t.me;
       document.getElementById('validateBtn').innerText = t.validate;
       document.getElementById('cancelBtn').innerText = t.cancel;
 
@@ -261,7 +262,7 @@
 
       function validateICSDialog() {
         console.log("validateICSDialog")
-        const personName = document.getElementById('personNameInput').value.trim() || "Me";
+        const personName = document.getElementById('personNameInput').value.trim() || t.me;
         document.getElementById('icsDialog').style.display = 'none';
 
         const selectedUnits = Array.from(document.querySelectorAll('.filterUnit:checked'))
