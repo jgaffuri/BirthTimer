@@ -6,8 +6,7 @@ https://www.ahahah.eu/birthtimer/
 
 ## TODO
 
-- week -> weeks
-- filterweeks -> semain-iversaire
+- translation weeks, filterweeks
 - add transkations: DA, NO, ["hi", "ar", "bn", "ru", "ja", "ur"]. Europeans: no, is, sr, bs, mk, ru, uk, be, tr, sq, ca, eu, gl, rm
 
 - show logo.png on page ?
@@ -16,3 +15,4 @@ https://www.ahahah.eu/birthtimer/
 - show timeline ?
 - Add link to github ?
 - Add share button next to each item ?
+
