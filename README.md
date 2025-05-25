@@ -7,6 +7,7 @@ https://www.ahahah.eu/birthtimer/
 ## TODO
 
 - add weeks
+- week -> weeks - filterweeks
 - add transkations: DA, NO, ["hi", "ar", "bn", "ru", "ja", "ur"]. Europeans: no, is, sr, bs, mk, ru, uk, be, tr, sq, ca, eu, gl, rm
 
 - show logo.png on page ?
