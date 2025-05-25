@@ -6,7 +6,9 @@ https://www.ahahah.eu/birthtimer/
 
 ## TODO
 
+- check CS/CZ and other language codes
 - social network logo transparency
+- week
 - translate "Me"
 - add sentence "Why to celebrate birthdays every year... only ?"
 - show logo.png on page ?
