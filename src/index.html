@@ -38,8 +38,8 @@
     </section>
     <section id="xiversaires">
       <h3 id="myNextMilestones"></h3>
-      <div class="section" id="filters"></div><br>
       <ul id="milestoneList"></ul>
+      <br><div class="section" id="filters"></div>
     </section>
     <section id="share">
       <a href="javascript:void(0);" id="icalButton"><img src="img/ical.png" alt="ICal"
@@ -257,7 +257,7 @@
           const formatter = new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit' });
           const time_ = formatter.format(m.date)
 
-          list.innerHTML += `<li>${t.onLabel} ${date_} ${t.atLabel} ${time_}: ${isPow10 ? '<b>' : ''}${m.value.toLocaleString(locale)} ${m.label}${isPow10 ? '</b>' : ''}</li>`;
+          list.innerHTML += `<li>${t.onLabel} ${date_} ${t.atLabel} ${time_}:<br> &nbsp; &nbsp; &nbsp; ${isPow10 ? '<span style="color:Crimson">' : ''}${m.value.toLocaleString(locale)} ${m.label}${isPow10 ? '</span>' : ''}</li>`;
         });
       }
 

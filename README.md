@@ -6,6 +6,7 @@ https://www.ahahah.eu/birthtimer/
 
 ## TODO
 
+- show as table
 - show/hide checkboxes
 
 - improve style
