@@ -13,5 +13,5 @@ https://www.ahahah.eu/birthtimer/
 - better smartphone compliance
 - show timeline ?
 - Add link to github ?
-- Add share button next to each item ?
+- Add share button next to x-iversary item ?
 
