@@ -110,12 +110,12 @@
       // Filtres
       //TODO show it in HTML directly ?
       document.getElementById('filters').innerHTML = `
-        <label><input type="checkbox" class="filterUnit" value="y"> ${t.filterYears}</label>
-        <label><input type="checkbox" class="filterUnit" value="mo" checked> ${t.filterMonths}</label>
-        <label><input type="checkbox" class="filterUnit" value="w" checked> ${t.filterWeeks}</label>
-        <label><input type="checkbox" class="filterUnit" value="d" checked> ${t.filterDays}</label>
-        <label><input type="checkbox" class="filterUnit" value="h" checked> ${t.filterHours}</label>
-        <label><input type="checkbox" class="filterUnit" value="mi" checked> ${t.filterMinutes}</label>
+        <label><input type="checkbox" class="filterUnit" value="y"> ${t.filterYears}</label><br>
+        <label><input type="checkbox" class="filterUnit" value="mo" checked> ${t.filterMonths}</label><br>
+        <label><input type="checkbox" class="filterUnit" value="w" checked> ${t.filterWeeks}</label><br>
+        <label><input type="checkbox" class="filterUnit" value="d" checked> ${t.filterDays}</label><br>
+        <label><input type="checkbox" class="filterUnit" value="h" checked> ${t.filterHours}</label><br>
+        <label><input type="checkbox" class="filterUnit" value="mi" checked> ${t.filterMinutes}</label><br>
         <label><input type="checkbox" class="filterUnit" value="s" checked> ${t.filterSeconds}</label>
       `;
     }
@@ -257,7 +257,7 @@
           const formatter = new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit' });
           const time_ = formatter.format(m.date)
 
-          list.innerHTML += `<li>${t.onLabel} ${date_} ${t.atLabel} ${time_}<br> &nbsp; &nbsp; &nbsp; ${isPow10 ? '<span style="color:Crimson">' : ''}🠖 ${m.value.toLocaleString(locale)} ${m.label}${isPow10 ? '</span>' : ''}</li>`;
+          list.innerHTML += `<li>${t.onLabel} ${date_} ${t.atLabel} ${time_}<br> &nbsp; &nbsp; &nbsp; ${isPow10 ? '<span style="color:Crimson">' : ''}➡ ${m.value.toLocaleString(locale)} ${m.label}${isPow10 ? '</span>' : ''}</li>`;
         });
       }
 
