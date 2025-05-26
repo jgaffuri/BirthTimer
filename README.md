@@ -6,10 +6,8 @@ https://www.ahahah.eu/birthtimer/
 
 ## TODO
 
-- show as table
-- show/hide checkboxes
-
 - improve style
+- show/hide checkboxes ?
 - show logo.png on page ?
 - better smartphone compliance
 - show timeline ?
