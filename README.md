@@ -6,6 +6,8 @@ https://www.ahahah.eu/birthtimer/
 
 ## TODO
 
+- include URL in iCal entries
+
 - improve style
 - show/hide checkboxes ?
 - show logo.png on page ?
