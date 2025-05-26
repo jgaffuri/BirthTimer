@@ -73,12 +73,13 @@
       return params.get(name);
     }
 
-
-
+    //TODO load list directly from json file ?
     const supportedLangs = ["en", "fr", "de", "es", "pt", "it",
       "nl", "lb", "fi", "sv", "zh", "el", "pl", "cs",
       "sk", "hu", "ro", "bg", "hr", "sl", "lv", "lt", "et",
-      "da", "no", "hi", "ar", "bn", "ru", "ja", "ur", "is", "sr", "bs", "mk", "uk"];
+      "da", "no", "hi", "ar", "bn", "ru", "ja", "ur", "is", "sr", "bs", "mk", "uk",
+      "be", "tr", "sq", "ca", "eu", "gl", "rm"
+    ];
     const paramLang = getURLParam("lang")
     const locale = getURLParam("locale") || navigator.language || navigator.userLanguage || "en-IE"
     const userLang = locale.substr(0, 2);

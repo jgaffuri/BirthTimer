@@ -6,8 +6,6 @@ https://www.ahahah.eu/birthtimer/
 
 ## TODO
 
-- add transkations: Europeans: ,
-"be", "tr", "sq", "ca", "eu", "gl", "rm"
 - show/hide checkboxes
 
 - improve style
