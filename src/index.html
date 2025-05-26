@@ -33,11 +33,11 @@
       <input type="time" id="timeInput">
     </section>
     <section id="age">
-      <h3 id="myAge"></h3>
+      <h2 id="myAge"></h3>
       <ul id="durationList"></ul>
     </section>
     <section id="xiversaires">
-      <h3 id="myNextMilestones"></h3>
+      <h2 id="myNextMilestones"></h3>
       <ul id="milestoneList"></ul>
       <br><div class="section" id="filters"></div>
     </section>
@@ -257,7 +257,7 @@
           const formatter = new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit' });
           const time_ = formatter.format(m.date)
 
-          list.innerHTML += `<li>${t.onLabel} ${date_} ${t.atLabel} ${time_}:<br> &nbsp; &nbsp; &nbsp; ${isPow10 ? '<span style="color:Crimson">' : ''}${m.value.toLocaleString(locale)} ${m.label}${isPow10 ? '</span>' : ''}</li>`;
+          list.innerHTML += `<li>${t.onLabel} ${date_} ${t.atLabel} ${time_}<br> &nbsp; &nbsp; &nbsp; ${isPow10 ? '<span style="color:Crimson">' : ''}🠖 ${m.value.toLocaleString(locale)} ${m.label}${isPow10 ? '</span>' : ''}</li>`;
         });
       }
 
