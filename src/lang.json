@@ -126,7 +126,7 @@
     "icsDialogTitle": "¿Para quién es esto?",
     "validate": "Validar",
     "cancel": "Cancelar",
-    "weeks": "weeks",
+    "weeks": "semanas",
     "intro": "¿Por qué celebrar los cumpleaños solo cada año?",
     "me": "Yo",
     "shareMessage": "¡Aquí tienes la lista de mis próximos Cumple-X! No te olvides de felicitarme :-)"
@@ -159,7 +159,7 @@
     "icsDialogTitle": "Para quem é isto?",
     "validate": "Validar",
     "cancel": "Cancelar",
-    "weeks": "weeks",
+    "weeks": "semanas",
     "intro": "Por que celebrar aniversários apenas todos os anos?",
     "me": "Eu",
     "shareMessage": "Aqui está a lista dos meus próximos Aniver-X! Não se esqueça de me dar os parabéns :-)"
@@ -192,7 +192,7 @@
     "icsDialogTitle": "Per chi è questo?",
     "validate": "Conferma",
     "cancel": "Annulla",
-    "weeks": "weeks",
+    "weeks": "settimane",
     "intro": "Perché festeggiare i compleanni solo ogni anno?",
     "me": "Io",
     "shareMessage": "Ecco la lista dei miei prossimi Comple-X! Non dimenticarti di farmi gli auguri :-)"
@@ -225,7 +225,7 @@
     "icsDialogTitle": "Voor wie is dit?",
     "validate": "Bevestigen",
     "cancel": "Annuleren",
-    "weeks": "weeks",
+    "weeks": "weken",
     "intro": "Waarom alleen elk jaar verjaardagen vieren?",
     "me": "Ik",
     "shareMessage": "Hier is de lijst van mijn volgende Verjaard-X's! Vergeet me niet te feliciteren :-)"
@@ -258,7 +258,7 @@
     "icsDialogTitle": "Fir wien ass dat?",
     "validate": "Bestätegen",
     "cancel": "Ofbriechen",
-    "weeks": "weeks",
+    "weeks": "Wochen",
     "intro": "Firwat nëmmen all Joer Gebuertsdeeg feieren?",
     "me": "Ech",
     "shareMessage": "Hei ass d'Lëscht vu menge nächste Gebuerts-X'en! Vergiess net mir ze gratuléieren :-)"
@@ -291,7 +291,7 @@
     "icsDialogTitle": "Kenelle tämä on?",
     "validate": "Hyväksy",
     "cancel": "Peruuta",
-    "weeks": "weeks",
+    "weeks": "viikot",
     "intro": "Miksi juhlia syntymäpäiviä vain joka vuosi?",
     "me": "Minä",
     "shareMessage": "Tässä lista seuraavista Synttäri-X:istäni! Muista onnitella :-)"
@@ -324,7 +324,7 @@
     "icsDialogTitle": "För vem är det här?",
     "validate": "Bekräfta",
     "cancel": "Avbryt",
-    "weeks": "weeks",
+    "weeks": "veckor",
     "intro": "Jag",
     "me": "Varför fira födelsedagar bara varje år?",
     "shareMessage": "Här är listan på mina kommande X-årsdagar! Glöm inte att gratta :-)"
@@ -357,7 +357,7 @@
     "icsDialogTitle": "这是给谁的？",
     "validate": "确认",
     "cancel": "取消",
-    "weeks": "weeks",
+    "weeks": "星期",
     "intro": "为什么只每年庆祝生日",
     "me": "我",
     "shareMessage": "这是我接下来生日X的清单！别忘了祝我生日快乐 :-)"
@@ -390,7 +390,7 @@
     "icsDialogTitle": "Για ποιον είναι αυτό;",
     "validate": "Επιβεβαίωση",
     "cancel": "Ακύρωση",
-    "weeks": "weeks",
+    "weeks": "εβδομάδες",
     "intro": "Γιατί να γιορτάζουμε γενέθλια μόνο κάθε χρόνο;",
     "me": "Εγώ",
     "shareMessage": "Ορίστε η λίστα με τα επόμενα Γενέθλ-X μου! Μην ξεχάσετε να μου ευχηθείτε :-)"
@@ -423,7 +423,7 @@
     "icsDialogTitle": "Dla kogo to jest?",
     "validate": "Zatwierdź",
     "cancel": "Anuluj",
-    "weeks": "weeks",
+    "weeks": "tygodnie",
     "intro": "Dlaczego świętować urodziny tylko co roku?",
     "me": "Ja",
     "shareMessage": "Oto lista moich kolejnych X-urodzin! Nie zapomnij mi złożyć życzeń :-)"
@@ -456,7 +456,7 @@
     "icsDialogTitle": "Pro koho je tohle?",
     "validate": "Potvrdit",
     "cancel": "Zrušit",
-    "weeks": "weeks",
+    "weeks": "týdny",
     "intro": "Proč slavit narozeniny jen každý rok?",
     "me": "Já",
     "shareMessage": "Tady je seznam mých příštích naroze-X-nin! Nezapomeň mi popřát :-)"
@@ -489,7 +489,7 @@
     "icsDialogTitle": "Pre koho je to?",
     "validate": "Potvrdiť",
     "cancel": "Zrušiť",
-    "weeks": "weeks",
+    "weeks": "týždne",
     "intro": "Prečo oslavovať narodeniny len každý rok?",
     "me": "Ja",
     "shareMessage": "Tu je zoznam mojich ďalších X-narodenín! Nezabudni mi zablahoželať :-)"
@@ -522,7 +522,7 @@
     "icsDialogTitle": "Kinek szól ez?",
     "validate": "Megerősít",
     "cancel": "Mégse",
-    "weeks": "weeks",
+    "weeks": "hetek",
     "intro": "Miért csak évente ünnepeljük a születésnapokat?",
     "me": "Én",
     "shareMessage": "Íme a következő X-szülinapjaim listája! Ne felejts el felköszönteni :-)"
@@ -555,7 +555,7 @@
     "icsDialogTitle": "Pentru cine este?",
     "validate": "Confirmă",
     "cancel": "Anulează",
-    "weeks": "weeks",
+    "weeks": "săptămâni",
     "intro": "De ce să sărbătorim zilele de naștere doar în fiecare an?",
     "me": "Eu",
     "shareMessage": "Iată lista următoarelor mele aniversări X! Nu uita să mă feliciți :-)"
@@ -588,7 +588,7 @@
     "icsDialogTitle": "За кого е това?",
     "validate": "Потвърди",
     "cancel": "Отказ",
-    "weeks": "weeks",
+    "weeks": "седмици",
     "intro": "Защо да празнуваме рождените дни само всяка година?",
     "me": "Аз",
     "shareMessage": "Ето списъка с моите следващи X-годишнини! Не забравяйте да ми честитите :-)"
@@ -621,7 +621,7 @@
     "icsDialogTitle": "Za koga je ovo?",
     "validate": "Potvrdi",
     "cancel": "Odustani",
-    "weeks": "weeks",
+    "weeks": "tjedni",
     "intro": "Zašto slaviti rođendane samo svake godine?",
     "me": "Ja",
     "shareMessage": "Evo popisa mojih sljedećih X-godišnjica! Ne zaboravi mi čestitati :-)"
@@ -654,7 +654,7 @@
     "icsDialogTitle": "Za koga je to?",
     "validate": "Potrdi",
     "cancel": "Prekliči",
-    "weeks": "weeks",
+    "weeks": "tedni",
     "intro": "Zakaj praznovati rojstne dneve samo vsako leto?",
     "me": "Jaz",
     "shareMessage": "Tukaj je seznam mojih naslednjih X-obletnic! Ne pozabi mi čestitati :-)"
@@ -687,7 +687,7 @@
     "icsDialogTitle": "Kam tas ir?",
     "validate": "Apstiprināt",
     "cancel": "Atcelt",
-    "weeks": "weeks",
+    "weeks": "nedēļas",
     "intro": "Kāpēc svinēt dzimšanas dienas tikai katru gadu?",
     "me": "Es",
     "shareMessage": "Te ir manu nākamo X-jubileju saraksts! Neaizmirsti man apsveikt :-)"
@@ -720,7 +720,7 @@
     "icsDialogTitle": "Kam tai skirta?",
     "validate": "Patvirtinti",
     "cancel": "Atšaukti",
-    "weeks": "weeks",
+    "weeks": "savaitės",
     "intro": "Kodėl švęsti gimtadienius tik kasmet?",
     "me": "Aš",
     "shareMessage": "Štai mano kitų X-jubiliejų sąrašas! Nepamiršk manęs pasveikinti :-)"
@@ -753,7 +753,7 @@
     "icsDialogTitle": "Kellele see on?",
     "validate": "Kinnita",
     "cancel": "Tühista",
-    "weeks": "weeks",
+    "weeks": "nädalad",
     "intro": "Miks sünnipäevi ainult igal aastal tähistada?",
     "me": "Mina",
     "shareMessage": "Siin on minu järgmiste X-tähtpäevade nimekiri! Ära unusta mind õnnitleda :-)"
