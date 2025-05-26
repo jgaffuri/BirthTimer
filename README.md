@@ -7,7 +7,7 @@ https://www.ahahah.eu/birthtimer/
 ## TODO
 
 - hide checkboxes
-- add transkations: DA, NO, ["hi", "ar", "bn", "ru", "ja", "ur"]. Europeans: no, is, sr, bs, mk, ru, uk, be, tr, sq, ca, eu, gl, rm
+- add transkations: Europeans: sr, bs, mk, ru, uk, be, tr, sq, ca, eu, gl, rm
 
 - improve style
 - show logo.png on page ?
