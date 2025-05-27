@@ -285,7 +285,13 @@
           const dateStr = m.date.toLocaleDateString(locale);
           const timeStr = m.date.toLocaleTimeString(locale);
           const summary = `${m.value.toLocaleString(locale)} ${m.unit} de ${personName} le ${dateStr} à ${timeStr}`;
-          ics += `BEGIN:VEVENT\nSUMMARY:${summary}\nDTSTART:${formatICSDate(m.date)}\nDTEND:${formatICSDate(new Date(m.date.getTime() + 3600000))}\nEND:VEVENT\n`;
+          ics += `BEGIN:VEVENT\n`
+          ics += `SUMMARY:${summary}\n`
+          //DESCRIPTION:This is a description.
+          ics += `URL:${window.location.href}\n`
+          ics += `DTSTART:${formatICSDate(m.date)}\n`
+          ics += `DTEND:${formatICSDate(new Date(m.date.getTime() + 3600000))}\n`;
+          ics += `END:VEVENT\n`
         });
         ics += "END:VCALENDAR";
 
