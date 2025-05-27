@@ -6,8 +6,6 @@ https://www.ahahah.eu/birthtimer/
 
 ## TODO
 
-- internationalise share messages
-- test share
 - show suitable birth-x dates/times
 
 - improve style
