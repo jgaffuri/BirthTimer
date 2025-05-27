@@ -7,7 +7,7 @@ https://www.ahahah.eu/birthtimer/
 ## TODO
 
 - internationalise share messages
-- test whatsapp share
+- test share
 - show suitable birth-x dates/times
 
 - improve style
