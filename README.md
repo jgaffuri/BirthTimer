@@ -6,8 +6,6 @@ https://www.ahahah.eu/birthtimer/
 
 ## TODO
 
-- show suitable birth-x dates/times
-
 - improve style
 - show/hide checkboxes ?
 - show logo.png on page ?
