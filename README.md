@@ -6,11 +6,10 @@ https://www.ahahah.eu/birthtimer/
 
 ## TODO
 
-- change title "Let's celebrate more than birthdays !
-- show suitable birth-x dates/times
-- internationalise share messages
-- include URL in iCal entries
 - 2000
+- change title "Let's celebrate more than birthdays !
+- internationalise share messages
+- show suitable birth-x dates/times
 
 - improve style
 - show/hide checkboxes ?
