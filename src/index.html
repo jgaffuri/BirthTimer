@@ -287,8 +287,8 @@
           ics += `BEGIN:VEVENT\n`
           const summary = `${m.value.toLocaleString(locale)} ${m.label} - ${personName}`;
           ics += `SUMMARY:${summary}\n`
-          summary += ` - ${t.onLabel} ${dateStr} ${t.atLabel} ${timeStr}`;
-          ics += `DESCRIPTION:${window.location.href}\n`
+          summary += ` - ${t.onLabel} ${dateStr} ${t.atLabel} ${timeStr} - ${window.location.href}`;
+          ics += `DESCRIPTION:${summary}\n`
           ics += `URL:${window.location.href}\n`
           ics += `DTSTART:${formatICSDate(m.date)}\n`
           ics += `DTEND:${formatICSDate(new Date(m.date.getTime() + 3600000))}\n`;
