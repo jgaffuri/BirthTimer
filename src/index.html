@@ -90,11 +90,11 @@
       .then(response => response.json())
       .then(json => {
         t = json[lang];
-        applyTranslations();
-        initPage();
+        applyTranslations(t);
+        initPage(t);
       });
 
-    function applyTranslations() {
+    function applyTranslations(t) {
       document.title = t.title;
       document.getElementById('title').innerText = t.intro;
       //document.getElementById('intro').innerText = t.intro;
@@ -130,7 +130,7 @@
 
 
 
-    function initPage() {
+    function initPage(t) {
 
       let milestonesCache = [];
       let timerInterval;
@@ -284,7 +284,7 @@
           if (!selectedUnits.includes(m.unit)) return;
           const dateStr = m.date.toLocaleDateString(locale);
           const timeStr = m.date.toLocaleTimeString(locale);
-          const summary = `${m.value.toLocaleString(locale)} ${m.unit} de ${personName} le ${dateStr} à ${timeStr}`;
+          const summary = `${m.value.toLocaleString(locale)} ${m.label} ${personName} ${t.onLabel} ${dateStr} ${t.atLabel} ${timeStr}`;
           ics += `BEGIN:VEVENT\n`
           ics += `SUMMARY:${summary}\n`
           //DESCRIPTION:This is a description.
@@ -364,7 +364,6 @@
 
       document.getElementById('share-linkedin').addEventListener('click', function () {
         const c = getShareContent()
-        //const linkedInUrl = `https://www.linkedin.com/sharing/share?url=${c.url}&title=${c.title}&summary=${c.message}&source=BirthTimer`
         const linkedInUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${c.url}&title=${c.message}`;
         window.open(linkedInUrl, 'linkedin-share-dialog', 'width=800,height=600');
       });

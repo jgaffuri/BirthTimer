@@ -6,7 +6,9 @@ https://www.ahahah.eu/birthtimer/
 
 ## TODO
 
+- change title "Let's celebrate more than birthdays !
 - show suitable birth-x dates/times
+- internationalise share messages
 - include URL in iCal entries
 - 2000
 
