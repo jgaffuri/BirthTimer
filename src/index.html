@@ -284,9 +284,10 @@
           if (!selectedUnits.includes(m.unit)) return;
           const dateStr = m.date.toLocaleDateString(locale);
           const timeStr = m.date.toLocaleTimeString(locale);
-          const summary = `${m.value.toLocaleString(locale)} ${m.label} - ${personName} - ${t.onLabel} ${dateStr} ${t.atLabel} ${timeStr}`;
           ics += `BEGIN:VEVENT\n`
+          const summary = `${m.value.toLocaleString(locale)} ${m.label} - ${personName}`;
           ics += `SUMMARY:${summary}\n`
+          summary += ` - ${t.onLabel} ${dateStr} ${t.atLabel} ${timeStr}`;
           ics += `DESCRIPTION:${window.location.href}\n`
           ics += `URL:${window.location.href}\n`
           ics += `DTSTART:${formatICSDate(m.date)}\n`
