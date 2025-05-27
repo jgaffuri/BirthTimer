@@ -285,7 +285,7 @@
           const dateStr = m.date.toLocaleDateString(locale);
           const timeStr = m.date.toLocaleTimeString(locale);
           ics += `BEGIN:VEVENT\n`
-          const summary = `${m.value.toLocaleString(locale)} ${m.label} - ${personName}`;
+          let summary = `${m.value.toLocaleString(locale)} ${m.label} - ${personName}`;
           ics += `SUMMARY:${summary}\n`
           summary += ` - ${t.onLabel} ${dateStr} ${t.atLabel} ${timeStr} - ${window.location.href}`;
           ics += `DESCRIPTION:${summary}\n`
