@@ -284,7 +284,7 @@
           if (!selectedUnits.includes(m.unit)) return;
           const dateStr = m.date.toLocaleDateString(locale);
           const timeStr = m.date.toLocaleTimeString(locale);
-          const summary = `${m.value.toLocaleString(locale)} ${m.label} ${personName} ${t.onLabel} ${dateStr} ${t.atLabel} ${timeStr}`;
+          const summary = `${m.value.toLocaleString(locale)} ${m.label} - ${personName} - ${t.onLabel} ${dateStr} ${t.atLabel} ${timeStr}`;
           ics += `BEGIN:VEVENT\n`
           ics += `SUMMARY:${summary}\n`
           //DESCRIPTION:This is a description.
