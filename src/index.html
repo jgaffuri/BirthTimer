@@ -264,18 +264,15 @@
 
 
       function downloadICS() {
-        console.log("downloadICS")
         document.getElementById('icsDialog').style.display = 'flex';
       }
 
       function cancelICSDialog() {
-        console.log("cancelICSDialog")
         document.getElementById('icsDialog').style.display = 'none';
       }
       document.getElementById('cancelBtn').addEventListener('click', cancelICSDialog)
 
       function validateICSDialog() {
-        console.log("validateICSDialog")
         const personName = document.getElementById('personNameInput').value.trim() || t.me;
         document.getElementById('icsDialog').style.display = 'none';
 
