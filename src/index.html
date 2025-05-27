@@ -287,7 +287,7 @@
           const summary = `${m.value.toLocaleString(locale)} ${m.label} - ${personName} - ${t.onLabel} ${dateStr} ${t.atLabel} ${timeStr}`;
           ics += `BEGIN:VEVENT\n`
           ics += `SUMMARY:${summary}\n`
-          //DESCRIPTION:This is a description.
+          ics += `DESCRIPTION:${window.location.href}\n`
           ics += `URL:${window.location.href}\n`
           ics += `DTSTART:${formatICSDate(m.date)}\n`
           ics += `DTEND:${formatICSDate(new Date(m.date.getTime() + 3600000))}\n`;
