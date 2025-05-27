@@ -6,7 +6,9 @@ https://www.ahahah.eu/birthtimer/
 
 ## TODO
 
+- show suitable birth-x dates/times
 - include URL in iCal entries
+- 2000
 
 - improve style
 - show/hide checkboxes ?
