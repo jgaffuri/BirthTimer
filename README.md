@@ -6,8 +6,7 @@ https://www.ahahah.eu/birthtimer/
 
 ## TODO
 
-- 2000
-- change title "Let's celebrate more than birthdays !
+- change title "Let's celebrate more than birthdays !"
 - internationalise share messages
 - show suitable birth-x dates/times
 

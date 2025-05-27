@@ -1,5 +1,6 @@
 {
   "fr": {
+    "title2": "Célébrons plus que les anniversaires !",
     "title": "Joyeux X-iversaire !",
     "birthdateLabel": "Ma date de naissance :",
     "onLabel": "Le ",
@@ -33,6 +34,7 @@
     "shareMessage": "Voici la liste de mes prochains x-iversaires ! N'oubliez pas de me les souhaiter :-)"
   },
   "en": {
+    "title2": "Let's celebrate more than just birthdays!",
     "title": "Happy birth-X !",
     "birthdateLabel": "My birth date:",
     "onLabel": "On ",
@@ -66,6 +68,7 @@
     "shareMessage": "Here’s the list of my next birth-Xs! Don’t forget to wish me :-)"
   },
   "de": {
+    "title2": "Lasst uns mehr als nur Geburtstage feiern !",
     "title": "Fröhliches Geburst-X!",
     "birthdateLabel": "Mein Geburtsdatum:",
     "onLabel": "Am ",
@@ -99,6 +102,7 @@
     "shareMessage": "Hier ist die Liste meiner nächsten Geburst-Xs ! Vergiss nicht, mir zu gratulieren :-)"
   },
   "es": {
+    "title2": "¡Celebremos más que solo cumpleaños!",
     "title": "¡Feliz Cumple-X!",
     "birthdateLabel": "Mi fecha de nacimiento:",
     "onLabel": "El ",
@@ -132,6 +136,7 @@
     "shareMessage": "¡Aquí tienes la lista de mis próximos Cumple-X! No te olvides de felicitarme :-)"
   },
   "pt": {
+    "title2": "Vamos celebrar mais do que apenas aniversários!",
     "title": "Feliz Aniver-X!",
     "birthdateLabel": "Minha data de nascimento:",
     "onLabel": "Em ",
@@ -165,6 +170,7 @@
     "shareMessage": "Aqui está a lista dos meus próximos Aniver-X! Não se esqueça de me dar os parabéns :-)"
   },
   "it": {
+    "title2": "Celebriamo più che solo compleanni!",
     "title": "Buon Comple-X!",
     "birthdateLabel": "La mia data di nascita:",
     "onLabel": "Il ",
@@ -198,6 +204,7 @@
     "shareMessage": "Ecco la lista dei miei prossimi Comple-X! Non dimenticarti di farmi gli auguri :-)"
   },
   "nl": {
+    "title2": "Laten we meer dan alleen verjaardagen vieren!",
     "title": "Fijne Verjaard-X!",
     "birthdateLabel": "Mijn geboortedatum:",
     "onLabel": "Op ",
@@ -231,6 +238,7 @@
     "shareMessage": "Hier is de lijst van mijn volgende Verjaard-X's! Vergeet me niet te feliciteren :-)"
   },
   "lb": {
+    "title2": "Loosst eis méi wéi nëmmen Gebuertsdeeg feieren!",
     "title": "Schéinen Gebuerts-X!",
     "birthdateLabel": "Mäi Gebuertsdag:",
     "onLabel": "Den ",
@@ -264,6 +272,7 @@
     "shareMessage": "Hei ass d'Lëscht vu menge nächste Gebuerts-X'en! Vergiess net mir ze gratuléieren :-)"
   },
   "fi": {
+    "title2": "Juhlitaan enemmän kuin pelkkiä syntymäpäiviä!",
     "title": "Hyvää Synttäri-X:ää!",
     "birthdateLabel": "Syntymäpäiväni:",
     "onLabel": " ",
@@ -297,6 +306,7 @@
     "shareMessage": "Tässä lista seuraavista Synttäri-X:istäni! Muista onnitella :-)"
   },
   "sv": {
+    "title2": "Låt oss fira mer än bara födelsedagar!",
     "title": "Grattis på X-årsdagen!",
     "birthdateLabel": "Min födelsedag:",
     "onLabel": "Den ",
@@ -330,6 +340,7 @@
     "shareMessage": "Här är listan på mina kommande X-årsdagar! Glöm inte att gratta :-)"
   },
   "zh": {
+    "title2": "让我们庆祝的不仅仅是生日!",
     "title": "生日X快乐！",
     "birthdateLabel": "我的出生日期：",
     "onLabel": "在 ",
@@ -363,6 +374,7 @@
     "shareMessage": "这是我接下来生日X的清单！别忘了祝我生日快乐 :-)"
   },
   "el": {
+    "title2": "Ας γιορτάσουμε περισσότερα από απλά γενέθλια!",
     "title": "Χαρούμενο Γενέθλ-X!",
     "birthdateLabel": "Ημερομηνία γέννησής μου:",
     "onLabel": "Στις ",
@@ -396,6 +408,7 @@
     "shareMessage": "Ορίστε η λίστα με τα επόμενα Γενέθλ-X μου! Μην ξεχάσετε να μου ευχηθείτε :-)"
   },
   "pl": {
+    "title2": "Świętujmy nie tylko urodziny!",
     "title": "Wesołego X-urodziny!",
     "birthdateLabel": "Moja data urodzenia:",
     "onLabel": "W dniu ",
@@ -429,6 +442,7 @@
     "shareMessage": "Oto lista moich kolejnych X-urodzin! Nie zapomnij mi złożyć życzeń :-)"
   },
   "cs": {
+    "title2": "Oslavme víc než jen narozeniny!",
     "title": "Všechno nejlepší k naroze-X-ninám!",
     "birthdateLabel": "Moje datum narození:",
     "onLabel": "Dne ",
@@ -462,6 +476,7 @@
     "shareMessage": "Tady je seznam mých příštích naroze-X-nin! Nezapomeň mi popřát :-)"
   },
   "sk": {
+    "title2": "Oslávme viac ako len narodeniny!",
     "title": "Šťastné X-narodeniny!",
     "birthdateLabel": "Môj dátum narodenia:",
     "onLabel": "Dňa ",
@@ -495,6 +510,7 @@
     "shareMessage": "Tu je zoznam mojich ďalších X-narodenín! Nezabudni mi zablahoželať :-)"
   },
   "hu": {
+    "title2": "Ünnepeljünk többet, mint csak születésnapokat!",
     "title": "Boldog X-szülinapot!",
     "birthdateLabel": "Születési dátumom:",
     "onLabel": "Ekkor: ",
@@ -528,6 +544,7 @@
     "shareMessage": "Íme a következő X-szülinapjaim listája! Ne felejts el felköszönteni :-)"
   },
   "ro": {
+    "title2": "Să sărbătorim mai mult decât doar aniversările!",
     "title": "La mulți ani de X!",
     "birthdateLabel": "Data mea de naștere:",
     "onLabel": "Pe ",
@@ -561,6 +578,7 @@
     "shareMessage": "Iată lista următoarelor mele aniversări X! Nu uita să mă feliciți :-)"
   },
   "bg": {
+    "title2": "Да празнуваме повече от просто рождени дни!",
     "title": "Честит X-ден!",
     "birthdateLabel": "Моята рождена дата:",
     "onLabel": "На ",
@@ -594,6 +612,7 @@
     "shareMessage": "Ето списъка с моите следващи X-годишнини! Не забравяйте да ми честитите :-)"
   },
   "hr": {
+    "title2": "Slavimo više od samo rođendana!",
     "title": "Sretan X-rođendan!",
     "birthdateLabel": "Moj datum rođenja:",
     "onLabel": "Dana ",
@@ -627,6 +646,7 @@
     "shareMessage": "Evo popisa mojih sljedećih X-godišnjica! Ne zaboravi mi čestitati :-)"
   },
   "sl": {
+    "title2": "Praznujmo več kot samo rojstne dneve!",
     "title": "Vse najboljše za X-obletnico!",
     "birthdateLabel": "Moj datum rojstva:",
     "onLabel": "Dne ",
@@ -660,6 +680,7 @@
     "shareMessage": "Tukaj je seznam mojih naslednjih X-obletnic! Ne pozabi mi čestitati :-)"
   },
   "lv": {
+    "title2": "Svinēsim vairāk nekā tikai dzimšanas dienas!",
     "title": "Daudz laimes X-dienā!",
     "birthdateLabel": "Mana dzimšanas diena:",
     "onLabel": "Plkst. ",
@@ -693,6 +714,7 @@
     "shareMessage": "Te ir manu nākamo X-jubileju saraksts! Neaizmirsti man apsveikt :-)"
   },
   "lt": {
+    "title2": "Švęskime daugiau nei tik gimtadienius!",
     "title": "Su X-gimtadieniu!",
     "birthdateLabel": "Mano gimimo data:",
     "onLabel": "Dieną ",
@@ -726,6 +748,7 @@
     "shareMessage": "Štai mano kitų X-jubiliejų sąrašas! Nepamiršk manęs pasveikinti :-)"
   },
   "et": {
+    "title2": "Pikem kui lihtsalt sünnipäevi!",
     "title": "Head X-sünnipäeva!",
     "birthdateLabel": "Minu sünnikuupäev:",
     "onLabel": "Kuupäeval ",
@@ -759,6 +782,7 @@
     "shareMessage": "Siin on minu järgmiste X-tähtpäevade nimekiri! Ära unusta mind õnnitleda :-)"
   },
   "da": {
+    "title2": "Lad os fejre mere end bare fødselsdage!",
     "title": "Glædelig X-fødselsdag!",
     "birthdateLabel": "Min fødselsdato:",
     "onLabel": "Den ",
@@ -792,6 +816,7 @@
     "shareMessage": "Her er listen over mine næste X-fødselsdage! Glem ikke at ønske mig :-)"
   },
   "no": {
+    "title2": "La oss feire mer enn bare bursdager!",
     "title": "Gratulerer med X-dagen!",
     "birthdateLabel": "Min fødselsdato:",
     "onLabel": "Den ",
@@ -825,6 +850,7 @@
     "shareMessage": "Her er listen over mine neste X-dager! Ikke glem å ønske meg :-)"
   },
   "hi": {
+    "title2": "आइए सिर्फ जन्मदिन से ज्यादा जश्न मनाएं!",
     "title": "जन्म-X की शुभकामनाएँ!",
     "birthdateLabel": "मेरी जन्म तिथि:",
     "onLabel": "पर ",
@@ -858,6 +884,7 @@
     "shareMessage": "यहाँ मेरी अगली जन्म-X की सूची है! मुझे शुभकामनाएं देना न भूलें :-)"
   },
   "ar": {
+    "title2": "دعونا نحتفل بأكثر من مجرد أعياد ميلاد!",
     "title": "عيد ميلاد-X سعيد!",
     "birthdateLabel": "تاريخ ميلادي:",
     "onLabel": "في ",
@@ -891,6 +918,7 @@
     "shareMessage": "إليك قائمة بمعالم ميلادي-X القادمة! لا تنس تهنئتي :-)"
   },
   "bn": {
+    "title2": "চলুন জন্মদিনের চেয়ে আরো কিছু উদযাপন করি!",
     "title": "শুভ জন্ম-X!",
     "birthdateLabel": "আমার জন্ম তারিখ:",
     "onLabel": "এ ",
@@ -924,6 +952,7 @@
     "shareMessage": "আমার পরবর্তী জন্ম-X-এর তালিকা এখানে! আমাকে শুভেচ্ছা দিতে ভুলবেন না :-)"
   },
   "ru": {
+    "title2": "Давайте праздновать больше, чем просто дни рождения!",
     "title": "С Днём Р-X!",
     "birthdateLabel": "Моя дата рождения:",
     "onLabel": "В ",
@@ -957,6 +986,7 @@
     "shareMessage": "Вот список моих следующих Дни Р-X! Не забудьте поздравить меня :-)"
   },
   "ja": {
+    "title2": "誕生日以上のお祝いをしよう！",
     "title": "ハッピー X-バースデー!",
     "birthdateLabel": "私の誕生日:",
     "onLabel": "",
@@ -990,6 +1020,7 @@
     "shareMessage": "次の X-誕生日の一覧はこちらです! 忘れずにお祝いしてください :-)"
   },
   "ur": {
+    "title2": "آئیے صرف سالگرہ سے زیادہ منائیں!",
     "title": "خوشی کا X-یوم ولادت!",
     "birthdateLabel": "میری تاریخ پیدائش:",
     "onLabel": "پر ",
@@ -1023,6 +1054,7 @@
     "shareMessage": "یہ میری اگلی X-یوم ولادت کی فہرست ہے! مجھے مبارکباد دینا نہ بھولیں :-)"
   },
   "is": {
+    "title2": "Fögnum meira en bara afmælum!",
     "title": "Gleðilegan X-afmæli!",
     "birthdateLabel": "Fæðingardagur minn:",
     "onLabel": "Á ",
@@ -1056,6 +1088,7 @@
     "shareMessage": "Hér er listinn af næstu X-afmælum mínum! Ekki gleyma að óska mér til hamingju :-)"
   },
   "sr": {
+    "title2": "Хајде да славимо више од само рођендана!",
     "title": "Срећан рођендан-X!",
     "birthdateLabel": "Мој датум рођења:",
     "onLabel": "На ",
@@ -1089,6 +1122,7 @@
     "shareMessage": "Ево списка мојих наредних рођендана-X! Не заборавите да ми честитате :-)"
   },
   "bs": {
+    "title2": "Slavimo više od samo rođendana!",
     "title": "Sretan X-rođendan!",
     "birthdateLabel": "Moj datum rođenja:",
     "onLabel": "Na ",
@@ -1122,6 +1156,7 @@
     "shareMessage": "Evo liste mojih sljedećih X-rođendana! Ne zaboravite mi čestitati :-)"
   },
   "mk": {
+    "title2": "Да прославиме повеќе од само родендени!",
     "title": "Среќен X-роденден!",
     "birthdateLabel": "Мојот датум на раѓање:",
     "onLabel": "На ",
@@ -1155,6 +1190,7 @@
     "shareMessage": "Еве ја листата на моите наредни X-родендени! Не заборавајте да ме поздравите :-)"
   },
   "uk": {
+    "title2": "Святкуймо більше ніж просто дні народження!",
     "title": "З Днем народження-X!",
     "birthdateLabel": "Моя дата народження:",
     "onLabel": "В ",
@@ -1188,6 +1224,7 @@
     "shareMessage": "Ось список моїх наступних X-днів! Не забудьте привітати мене :-)"
   },
   "be": {
+    "title2": "Святкуем больш чым толькі дні нараджэння!",
     "title": "З Днём нараджэння-X!",
     "birthdateLabel": "Мая дата нараджэння:",
     "onLabel": "У ",
@@ -1221,6 +1258,7 @@
     "shareMessage": "Вось спіс маіх наступных X-дняў! Не забудзьце мяне павіншаваць :-)"
   },
   "tr": {
+    "title2": "Sadece doğum günlerini değil, daha fazlasını kutlayalım!",
     "title": "Mutlu X-Doğum Günü!",
     "birthdateLabel": "Doğum tarihim:",
     "onLabel": "Tarihte ",
@@ -1254,6 +1292,7 @@
     "shareMessage": "İşte sonraki X-Doğum Günlerimin listesi! Beni tebrik etmeyi unutmayın :-)"
   },
   "sq": {
+    "title2": "Le të festojmë më shumë se vetëm ditëlindjet!",
     "title": "Gëzuar X-ditëlindjen!",
     "birthdateLabel": "Data ime e lindjes:",
     "onLabel": "Më ",
@@ -1287,6 +1326,7 @@
     "shareMessage": "Këtu është lista e ditëlindjeve të mia të ardhshme-X! Mos harroni të më uroni :-)"
   },
   "ca": {
+    "title2": "Celebrem més que només aniversaris!",
     "title": "Feliç X-aniversari!",
     "birthdateLabel": "La meva data de naixement:",
     "onLabel": "El ",
@@ -1320,6 +1360,7 @@
     "shareMessage": "Aquí teniu la llista dels meus propers X-aniversaris! No t'oblidis de felicitar-me :-)"
   },
   "eu": {
+    "title2": "Ospatu ditzagun urtebetetzeak baino gehiago!",
     "title": "Zorionak X-urtzaroetan!",
     "birthdateLabel": "Nire jaiotze data:",
     "onLabel": "",
@@ -1353,6 +1394,7 @@
     "shareMessage": "Hona hemen nire hurrengo X-urtzahalen zerrenda! Ez ahaztu zoriontzea :-)"
   },
   "gl": {
+    "title2": "Imos celebrar máis que soamente aniversarios!",
     "title": "Feliz X-aniversario!",
     "birthdateLabel": "A miña data de nacemento:",
     "onLabel": "O ",
@@ -1386,6 +1428,7 @@
     "shareMessage": "Aquí a lista dos meus próximos X-aniversarios! Non esquezas felicitarme :-)"
   },
   "rm": {
+    "title2": "Festegiem dapli che be naschientschas!",
     "title": "Bainvegni-il X-naschientscha!",
     "birthdateLabel": "Mia data da naschientscha:",
     "onLabel": "En ",
