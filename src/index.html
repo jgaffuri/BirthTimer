@@ -256,10 +256,18 @@
           const date_ = m.date.toLocaleDateString(locale);
           //const time_ = m.date.toLocaleTimeString(locale);
 
-          const formatter = new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit' });
-          const time_ = formatter.format(m.date)
+          if(m.unit == "s") {
+            const formatter = new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            m.time_ = formatter.format(m.date)
+          } else if(m.unit == "mi" || m.unit == "h") {
+            const formatter = new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit' });
+            m.time_ = formatter.format(m.date)
+          } else {
+            const formatter = new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit' });
+            m.time_ = undefined
+          }
 
-          list.innerHTML += `<li>${t.onLabel} ${date_} ${t.atLabel} ${time_}<br> &nbsp; &nbsp; &nbsp; ${isPow10 ? '<span style="color:Crimson">' : ''}➡ ${m.value.toLocaleString(locale)} ${m.label}${isPow10 ? '</span>' : ''}</li>`;
+          list.innerHTML += `<li>${t.onLabel} ${date_} ${m.time_? t.atLabel+" "+m.time_ : ""}<br> &nbsp; ${isPow10 ? '<span style="color:Crimson">' : ''}➡ ${m.value.toLocaleString(locale)} ${m.label}${isPow10 ? '</span>' : ''}</li>`;
         });
       }
 
