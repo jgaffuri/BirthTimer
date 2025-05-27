@@ -68,6 +68,8 @@
 
   <script>
 
+    const ahahahURL = "https://www.ahahah.eu/birthtimer/"
+
     function getURLParam(name) {
       const params = new URLSearchParams(window.location.search);
       return params.get(name);
@@ -279,6 +281,7 @@
         const selectedUnits = Array.from(document.querySelectorAll('.filterUnit:checked'))
           .map(cb => cb.value);
 
+        const url = ahahahURL + window.location.search
         let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//BirthTimer//EN\n";
         milestonesCache.forEach(m => {
           if (!selectedUnits.includes(m.unit)) return;
@@ -287,9 +290,9 @@
           ics += `BEGIN:VEVENT\n`
           let summary = `${m.value.toLocaleString(locale)} ${m.label} - ${personName}`;
           ics += `SUMMARY:${summary}\n`
-          summary += ` - ${t.onLabel} ${dateStr} ${t.atLabel} ${timeStr} - ${window.location.href}`;
+          summary += ` - ${t.onLabel} ${dateStr} ${t.atLabel} ${timeStr} - ${url}`;
           ics += `DESCRIPTION:${summary}\n`
-          ics += `URL:${window.location.href}\n`
+          ics += `URL:${url}\n`
           ics += `DTSTART:${formatICSDate(m.date)}\n`
           ics += `DTEND:${formatICSDate(new Date(m.date.getTime() + 3600000))}\n`;
           ics += `END:VEVENT\n`
@@ -332,12 +335,11 @@
       }
 
 
-      const ahahahURL = "https://www.ahahah.eu/birthtimer/"
       function getShareContent() {
         return {
           url: encodeURIComponent(ahahahURL + window.location.search),
-          message: encodeURIComponent(t.shareMessage),
-          title: encodeURIComponent(t.title),
+          message: encodeURIComponent(c.title2 + "%20" + t.shareMessage),
+          //title: encodeURIComponent(t.title2),
         }
       }
 
@@ -366,6 +368,7 @@
       document.getElementById('share-linkedin').addEventListener('click', function () {
         const c = getShareContent()
         const linkedInUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${c.url}&title=${c.message}`;
+        // summary ?
         window.open(linkedInUrl, 'linkedin-share-dialog', 'width=800,height=600');
       });
 

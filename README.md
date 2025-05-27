@@ -6,8 +6,8 @@ https://www.ahahah.eu/birthtimer/
 
 ## TODO
 
-- change title "Let's celebrate more than birthdays !"
 - internationalise share messages
+- test whatsapp share
 - show suitable birth-x dates/times
 
 - improve style
