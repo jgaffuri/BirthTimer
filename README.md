@@ -1,8 +1,8 @@
 # BirthTimer
 
-Why to celebrate your birthday every year, only ?
+Why celebrate birthdays, only ?
 
-https://www.ahahah.eu/birthtimer/
+**See: https://www.ahahah.eu/birthtimer/**
 
 ## TODO
 
