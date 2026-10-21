@@ -230,7 +230,7 @@
 
         units.forEach(u => {
           for (let exp = 0; exp <= 11; exp++) {
-            for (let m = 1; m < 10; m++) {
+            for (const m of [1,1.5,2,2.5,3,4,5,6,7,7.5,8,9]) {
               const value = m * Math.pow(10, exp);
               const durationMs = value * u.factor;
               if (durationMs > maxMs) break;
