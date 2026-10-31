@@ -1,400 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-    content="Want to celebrate more than your birthdays? Compute your age in seconds, minutes, hours, days, weeks and months, and see when to celebrate rounded integer birthdays in these unit. What could be called a birth-x !. Save it in your calendar in iCal ICS format." />
-  <meta name="keywords"
-    content="Birthday, anniversary, time, minute, second, hour, day, month, celebration, date, time, computation, duration" />
-  <meta property="og:title" content="Happy birthday in second, minute, hour, day, week and month" />
-  <meta property="og:description"
-    content="Want to celebrate more than your birthdays? Compute your age in seconds, minutes, hours, days, weeks and months, and see when to celebrate rounded integer birthdays in these unit. What could be called a birth-x !. Save it in your calendar in iCal ICS format." />
+  <meta name="description" content="Track your age by seconds, minutes, hours, days, weeks and months, and celebrate your next birth-X milestones." />
+  <meta name="keywords" content="Birthday, anniversary, time, age, milestone, calendar, duration" />
+  <meta property="og:title" content="Happy birth-X!" />
+  <meta property="og:description" content="Track your age in time units and celebrate your next birth-X milestones." />
   <meta property="og:image" content="https://www.ahahah.eu/birthtimer/img/logo/logo.png" />
   <link rel="canonical" href="https://www.ahahah.eu/birthtimer/" />
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png">
-  <title>Happy birthday in seconds, minutes, hours, days and months !</title>
+  <title>BirthTimer</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
 </head>
 
 <body>
-
-  <header>
-    <h1><a href="https://www.ahahah.eu/birthtimer/"><span id="title"></span></a></h1>
-    <p id="intro"></p>
+  <header class="site-header">
+    <div class="container">
+      <h1><a href="https://www.ahahah.eu/birthtimer/"><span id="title">BirthTimer</span></a></h1>
+      <p id="intro" class="intro">Why celebrate birthdays only once a year?</p>
+    </div>
   </header>
 
-  <main>
-    <section id="birthdate">
-      <label id="birthdateLabel"></label>
-      <input type="date" id="dateInput">
-      <label id="atLabel"></label>
-      <input type="time" id="timeInput">
+  <main class="container">
+    <section class="panel" id="birthdate">
+      <div class="field-row">
+        <label for="dateInput" id="birthdateLabel">My birth date:</label>
+        <input type="date" id="dateInput" aria-label="Birth date">
+      </div>
+      <div class="field-row">
+        <label for="timeInput" id="atLabel">at</label>
+        <input type="time" id="timeInput" aria-label="Birth time">
+      </div>
     </section>
-    <section id="age">
-      <h2 id="myAge"></h3>
-      <ul id="durationList"></ul>
+
+    <section class="panel" id="age">
+      <h2 id="myAge">My age</h2>
+      <ul id="durationList" class="stat-list"></ul>
     </section>
-    <section id="xiversaires">
-      <h2 id="myNextMilestones"></h3>
-      <ul id="milestoneList"></ul>
-      <br><div class="section" id="filters"></div>
+
+    <section class="panel" id="xiversaires">
+      <h2 id="myNextMilestones">My next birth-Xs</h2>
+      <ul id="milestoneList" class="milestone-list"></ul>
+      <div class="filters" id="filters" aria-label="Milestone filters"></div>
     </section>
-    <section id="share">
-      <a href="javascript:void(0);" id="icalButton"><img src="img/ical.png" alt="ICal"
-          style="width:50px;height:50px;"></a>
-      <a href="javascript:void(0);" id="share-facebook"><img src="img/fb.png" alt="Facebook"
-          style="width:50px;height:50px;"></a>
-      <a href="javascript:void(0);" id="share-whatsapp"><img src="img/whatsapp.png" alt="Whatsapp"
-          style="width:50px;height:50px;"></a>
-      <a href="javascript:void(0);" id="share-linkedin"><img src="img/linkedin.png" alt="LinkedIn"
-          style="width:50px;height:50px;"></a>
-      <a href="javascript:void(0);" id="share-twitter"><img src="img/twitter.png" alt="Twitter - X"
-          style="width:50px;height:50px;"></a>
+
+    <section class="panel share-panel" id="share">
+      <a href="javascript:void(0);" id="icalButton" class="share-button" aria-label="Add to calendar" title="Add to calendar">
+        <img src="img/ical.png" alt="iCal icon">
+      </a>
+      <a href="javascript:void(0);" id="share-facebook" class="share-button" aria-label="Share on Facebook" title="Share on Facebook">
+        <img src="img/fb.png" alt="Facebook icon">
+      </a>
+      <a href="javascript:void(0);" id="share-whatsapp" class="share-button" aria-label="Share on WhatsApp" title="Share on WhatsApp">
+        <img src="img/whatsapp.png" alt="WhatsApp icon">
+      </a>
+      <a href="javascript:void(0);" id="share-linkedin" class="share-button" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+        <img src="img/linkedin.png" alt="LinkedIn icon">
+      </a>
+      <a href="javascript:void(0);" id="share-twitter" class="share-button" aria-label="Share on Twitter/X" title="Share on Twitter/X">
+        <img src="img/twitter.png" alt="Twitter/X icon">
+      </a>
     </section>
   </main>
 
-  <div id="icsDialog"
-    style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1000; justify-content:center; align-items:center;">
-    <div style="background:white; padding:20px; border-radius:8px; max-width:300px; text-align:center;">
-      <h3 id="icsDialogTitle"></h3>
-      <input type="text" id="personNameInput" value="Me" style="margin:10px 0; width:90%; padding:5px;">
-      <br>
-      <button id="validateBtn"></button>
-      <button id="cancelBtn"></button>
+  <div id="icsDialog" class="ics-dialog" role="dialog" aria-modal="true" aria-labelledby="icsDialogTitle" aria-hidden="true">
+    <div class="ics-dialog-card">
+      <h3 id="icsDialogTitle">Who is this for?</h3>
+      <input type="text" id="personNameInput" value="Me" aria-label="Person name for calendar entry">
+      <div class="dialog-actions">
+        <button id="validateBtn" type="button">Validate</button>
+        <button id="cancelBtn" type="button" class="secondary">Cancel</button>
+      </div>
     </div>
   </div>
 
-  <script>
-
-    const ahahahURL = "https://www.ahahah.eu/birthtimer/"
-
-    function getURLParam(name) {
-      const params = new URLSearchParams(window.location.search);
-      return params.get(name);
-    }
-
-    //TODO load list directly from json file ?
-    const supportedLangs = ["en", "fr", "de", "es", "pt", "it",
-      "nl", "lb", "fi", "sv", "zh", "el", "pl", "cs",
-      "sk", "hu", "ro", "bg", "hr", "sl", "lv", "lt", "et",
-      "da", "no", "hi", "ar", "bn", "ru", "ja", "ur", "is", "sr", "bs", "mk", "uk",
-      "be", "tr", "sq", "ca", "eu", "gl", "rm"
-    ];
-    const paramLang = getURLParam("lang")
-    const locale = getURLParam("locale") || navigator.language || navigator.userLanguage || "en-IE"
-    const userLang = locale.substr(0, 2);
-    let lang = supportedLangs.includes(paramLang) ? paramLang : supportedLangs.includes(userLang) ? userLang : "en";
-    let t = {};
-
-    fetch('lang.json')
-      .then(response => response.json())
-      .then(json => {
-        t = json[lang];
-        applyTranslations(t);
-        initPage(t);
-      });
-
-    function applyTranslations(t) {
-      document.title = t.title;
-      document.getElementById('title').innerText = t.title2;
-      //document.getElementById('intro').innerText = t.intro;
-      document.getElementById('birthdateLabel').textContent = t.birthdateLabel + " ";
-      document.getElementById('atLabel').textContent = t.atLabel + " ";
-      document.getElementById('myAge').innerText = t.myAge;
-      document.getElementById('myNextMilestones').innerText = t.myNextMilestones;
-      document.getElementById('icsDialogTitle').innerText = t.icsDialogTitle;
-      document.getElementById('personNameInput').value = t.me;
-      document.getElementById('validateBtn').innerText = t.validate;
-      document.getElementById('cancelBtn').innerText = t.cancel;
-
-      // Filtres
-      //TODO show it in HTML directly ?
-      document.getElementById('filters').innerHTML = `
-        <label><input type="checkbox" class="filterUnit" value="y"> ${t.filterYears}</label><br>
-        <label><input type="checkbox" class="filterUnit" value="mo" checked> ${t.filterMonths}</label><br>
-        <label><input type="checkbox" class="filterUnit" value="w" checked> ${t.filterWeeks}</label><br>
-        <label><input type="checkbox" class="filterUnit" value="d" checked> ${t.filterDays}</label><br>
-        <label><input type="checkbox" class="filterUnit" value="h" checked> ${t.filterHours}</label><br>
-        <label><input type="checkbox" class="filterUnit" value="mi" checked> ${t.filterMinutes}</label><br>
-        <label><input type="checkbox" class="filterUnit" value="s" checked> ${t.filterSeconds}</label>
-      `;
-    }
-
-
-    function updateURLParam(name, value) {
-      const params = new URLSearchParams(window.location.search);
-      params.set(name, value);
-      const newUrl = `${window.location.pathname}?${params.toString()}`;
-      window.history.replaceState({}, '', newUrl);
-    }
-
-
-
-    function initPage(t) {
-
-      let milestonesCache = [];
-      let timerInterval;
-
-      function setDefaultDateTime() {
-        const dateInput = document.getElementById('dateInput');
-        const timeInput = document.getElementById('timeInput');
-        let startParam = getURLParam('start');
-        let start;
-
-        if (startParam) {
-          start = new Date(startParam);
-          if (isNaN(start)) start = null;
-        }
-
-        if (!start) {
-          start = new Date();
-          start.setFullYear(start.getFullYear() - 30);
-          const iso = start.toISOString();
-          updateURLParam('start', iso);
-        }
-
-        const yyyy = start.getFullYear();
-        const mm = String(start.getMonth() + 1).padStart(2, '0');
-        const dd = String(start.getDate()).padStart(2, '0');
-        dateInput.value = `${yyyy}-${mm}-${dd}`;
-
-        const hh = String(start.getHours()).padStart(2, '0');
-        const min = String(start.getMinutes()).padStart(2, '0');
-        const ss = String(start.getSeconds()).padStart(2, '0');
-        timeInput.value = `${hh}:${min}:${ss}`;
-      }
-
-      function updateDurations() {
-        const dateInputVal = document.getElementById('dateInput').value;
-        const timeInputVal = document.getElementById('timeInput').value;
-        if (!dateInputVal || !timeInputVal) return;
-
-        const start = new Date(`${dateInputVal}T${timeInputVal}`);
-        const now = new Date();
-        const durationMs = now - start;
-        if (durationMs <= 0) return;
-
-        const seconds = Math.floor(durationMs / 1000);
-        const minutes = Math.floor(durationMs / 60000);
-        const hours = Math.floor(durationMs / 3600000);
-        const days = Math.floor(durationMs / 86400000);
-        const weeks = Math.floor(durationMs / (7 * 86400000));
-        const months = Math.floor(days / 30.44);
-        const years = Math.floor(months / 12);
-
-        const list = document.getElementById('durationList');
-        list.innerHTML = `
-    <li>${years.toLocaleString(locale)} ${t.years}</li>
-    <li>${months.toLocaleString(locale)} ${t.months}</li>
-    <li>${weeks.toLocaleString(locale)} ${t.weeks}</li>
-    <li>${days.toLocaleString(locale)} ${t.days}</li>
-    <li>${hours.toLocaleString(locale)} ${t.hours}</li>
-    <li>${minutes.toLocaleString(locale)} ${t.minutes}</li>
-    <li>${seconds.toLocaleString(locale)} ${t.seconds}</li>
-  `;
-      }
-
-      function startTimer() {
-        clearInterval(timerInterval);
-        updateDurations();
-        timerInterval = setInterval(updateDurations, 1000);
-      }
-
-      function isPowerOf10(n) {
-        return (Math.log10(n) % 1 === 0);
-      }
-
-
-      function generateMilestones() {
-        const dateInputVal = document.getElementById('dateInput').value;
-        const timeInputVal = document.getElementById('timeInput').value;
-        if (!dateInputVal || !timeInputVal) return;
-
-        const start = new Date(`${dateInputVal}T${timeInputVal}`);
-        const maxYears = 100;
-        const maxMs = maxYears * 365.25 * 86400000;
-        const now = new Date();
-        const units = [
-          { unit: "s", label: t.seconds, factor: 1000 },
-          { unit: "mi", label: t.minutes, factor: 60000 },
-          { unit: "h", label: t.hours, factor: 3600000 },
-          { unit: "d", label: t.days, factor: 86400000 },
-          { unit: "w", label: t.weeks, factor: 7 * 86400000 },
-          { unit: "mo", label: t.months, factor: 30.44 * 86400000 },
-          { unit: "y", label: t.years, factor: 365.25 * 86400000 }
-        ];
-
-        let milestones = [];
-
-        units.forEach(u => {
-          for (let exp = 0; exp <= 11; exp++) {
-            for (const m of [1,1.5,2,2.5,3,4,5,6,7,7.5,8,9]) {
-              const value = m * Math.pow(10, exp);
-              const durationMs = value * u.factor;
-              if (durationMs > maxMs) break;
-              const milestoneDate = new Date(start.getTime() + durationMs);
-              if (milestoneDate > now)
-                milestones.push({ value, unit: u.unit, label: u.label, date: milestoneDate, durationMs });
-            }
-          }
-        });
-
-        milestones.sort((a, b) => a.durationMs - b.durationMs);
-        milestonesCache = milestones;
-
-        // Récupère les unités sélectionnées
-        const selectedUnits = Array.from(document.querySelectorAll('.filterUnit:checked'))
-          .map(cb => cb.value);
-
-        const list = document.getElementById('milestoneList');
-        list.innerHTML = "";
-        milestones.forEach(m => {
-          if (!selectedUnits.includes(m.unit)) return;
-          const isPow10 = isPowerOf10(m.value);
-          const date_ = m.date.toLocaleDateString(locale);
-          //const time_ = m.date.toLocaleTimeString(locale);
-
-          if(m.unit == "s") {
-            const formatter = new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            m.time_ = formatter.format(m.date)
-          } else if(m.unit == "mi" || m.unit == "h") {
-            const formatter = new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit' });
-            m.time_ = formatter.format(m.date)
-          } else {
-            const formatter = new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit' });
-            m.time_ = undefined
-          }
-
-          list.innerHTML += `<li>${t.onLabel} ${date_} ${m.time_? t.atLabel+" "+m.time_ : ""}<br> &nbsp; &nbsp; ${isPow10 ? '<span style="color:Crimson">' : ''}➡ ${m.value.toLocaleString(locale)} ${m.label}${isPow10 ? '</span>' : ''}</li>`;
-        });
-      }
-
-
-
-      function downloadICS() {
-        document.getElementById('icsDialog').style.display = 'flex';
-      }
-
-      function cancelICSDialog() {
-        document.getElementById('icsDialog').style.display = 'none';
-      }
-      document.getElementById('cancelBtn').addEventListener('click', cancelICSDialog)
-
-      function validateICSDialog() {
-        const personName = document.getElementById('personNameInput').value.trim() || t.me;
-        document.getElementById('icsDialog').style.display = 'none';
-
-        const selectedUnits = Array.from(document.querySelectorAll('.filterUnit:checked'))
-          .map(cb => cb.value);
-
-        const url = ahahahURL + window.location.search
-        let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//BirthTimer//EN\n";
-        milestonesCache.forEach(m => {
-          if (!selectedUnits.includes(m.unit)) return;
-          const dateStr = m.date.toLocaleDateString(locale);
-          const timeStr = m.date.toLocaleTimeString(locale);
-          ics += `BEGIN:VEVENT\n`
-          let summary = `${m.value.toLocaleString(locale)} ${m.label} - ${personName}`;
-          ics += `SUMMARY:${summary}\n`
-          summary += ` - ${t.onLabel} ${dateStr} ${t.atLabel} ${timeStr} - ${url}`;
-          ics += `DESCRIPTION:${summary}\n`
-          ics += `URL:${url}\n`
-          ics += `DTSTART:${formatICSDate(m.date)}\n`
-          ics += `DTEND:${formatICSDate(new Date(m.date.getTime() + 3600000))}\n`;
-          ics += `END:VEVENT\n`
-        });
-        ics += "END:VCALENDAR";
-
-        const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = "bx_" + simplifyString(personName) + ".ics";
-        link.click();
-      }
-      document.getElementById('validateBtn').addEventListener('click', validateICSDialog)
-
-      function formatICSDate(d) {
-        return d.toISOString().replace(/[-:]/g, '').split('.')[0] + "Z";
-      }
-
-      function simplifyString(str) {
-        return str
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "")
-          .replace(/[^a-zA-Z0-9\s]/g, "")
-          .trim()
-          .toLowerCase()
-          .replace(/\s+/g, "_");
-      }
-
-
-      function onDateTimeChange() {
-        const dateInputVal = document.getElementById('dateInput').value;
-        const timeInputVal = document.getElementById('timeInput').value;
-        if (!dateInputVal || !timeInputVal) return;
-
-        const isoDate = new Date(`${dateInputVal}T${timeInputVal}`).toISOString();
-        updateURLParam('start', isoDate);
-
-        startTimer();
-        generateMilestones();
-      }
-
-
-      function getShareContent() {
-        return {
-          url: encodeURIComponent(ahahahURL + window.location.search),
-          message: encodeURIComponent(t.title2 + " " + t.shareMessage),
-          //title: encodeURIComponent(t.title2),
-        }
-      }
-
-      // Ajout des événements click sur les boutons
-
-      document.getElementById('icalButton').addEventListener('click', downloadICS)
-
-      document.getElementById('share-facebook').addEventListener('click', function () {
-        const c = getShareContent()
-        var facebookUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + c.url + '&quote=' + c.message;
-        window.open(facebookUrl, 'facebook-share-dialog', 'width=800,height=600');
-      });
-
-      document.getElementById('share-whatsapp').addEventListener('click', function () {
-        const c = getShareContent()
-        var whatsappUrl = "https://api.whatsapp.com/send?text=" + c.message + "%20" + c.url
-        window.open(whatsappUrl, 'whatsapp-share-dialog', 'width=800,height=600');
-      });
-
-      document.getElementById('share-twitter').addEventListener('click', function () {
-        const c = getShareContent()
-        const twitterUrl = `https://twitter.com/intent/tweet?text=${c.message}&url=${c.url}`;
-        window.open(twitterUrl, 'twitter-share-dialog', 'width=800,height=600');
-      });
-
-      document.getElementById('share-linkedin').addEventListener('click', function () {
-        const c = getShareContent()
-        const linkedInUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${c.url}&title=${c.message}`;
-        // summary ?
-        window.open(linkedInUrl, 'linkedin-share-dialog', 'width=800,height=600');
-      });
-
-      document.getElementById('dateInput').addEventListener('change', onDateTimeChange);
-      document.getElementById('timeInput').addEventListener('change', onDateTimeChange);
-
-      document.querySelectorAll('.filterUnit').forEach(cb => { cb.addEventListener('change', generateMilestones); });
-
-      setDefaultDateTime();
-      startTimer();
-      generateMilestones();
-    }
-
-  </script>
-
-
-
-  <footer>
+  <footer class="site-footer">
     <p>© 2025 <a href="https://www.ahahah.eu/birthtimer/">BirthTimer</a></p>
   </footer>
 </body>

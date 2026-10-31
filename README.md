@@ -1,21 +1,29 @@
 # BirthTimer
 
-Why celebrate birthdays, only ?
+BirthTimer is a small static web app that helps you celebrate more than just birthdays.
 
-**See: https://www.ahahah.eu/birthtimer/**
+It lets you enter a birth date and time, then shows your age in multiple time units (seconds, minutes, hours, days, weeks, months, years) and highlights upcoming milestone dates such as 1, 10, 1000 seconds, or each rounded x-iversary.
 
-## TODO
-- 15y instead of 30y
-- change title: "my birthday in seconds, minutes, hours, days, weeks and months !"
-- make fancier - better style. Find templates online ?
-- try getting bbday with: <label for="birthday">Your birthday:</label><input type="date" id="birthday" name="birthday" autocomplete="bday">
-- make share buttons better, more visible. With a text: tell your friends not to forget wishing you - save in your agenda/calendar
+The page also supports exporting milestones to an `.ics` calendar file and sharing the list via social networks.
 
-- improve style
-- show/hide checkboxes ?
-- show logo.png on page ?
-- better smartphone compliance
-- show timeline ?
-- Add link to github ?
-- Add share button next to x-iversary item ?
+**Live demo:** https://www.ahahah.eu/birthtimer/
+
+## Project structure
+- `src/index.html` — page layout and semantic sections
+- `src/styles.css` — responsive styling and polished UI
+- `src/app.js` — age calculation, milestone generation, translation handling, sharing and calendar export
+- `src/lang.json` — translations
+
+## Running locally
+From the repository root:
+
+```bash
+cd src
+python3 -m http.server 8000
+```
+
+Then open `http://localhost:8000` in a browser.
+
+## Notes
+This project is intentionally lightweight: no backend, no build step, just static HTML/CSS/JS.
 
