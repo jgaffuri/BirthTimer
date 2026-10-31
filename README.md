@@ -6,6 +6,8 @@ It lets you enter a birth date and time, then shows your age in multiple time un
 
 The page also supports exporting milestones to an `.ics` calendar file and sharing the list via social networks.
 
+The interface includes a concise age summary, an upcoming-milestone timeline, a light/dark theme toggle, and native sharing/copy-link actions where supported.
+
 **Live demo:** https://www.ahahah.eu/birthtimer/
 
 ## Project structure
@@ -26,4 +28,3 @@ Then open `http://localhost:8000` in a browser.
 
 ## Notes
 This project is intentionally lightweight: no backend, no build step, just static HTML/CSS/JS.
-

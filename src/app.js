@@ -1,4 +1,3 @@
-const BIRTH_TIMER_URL = 'https://www.ahahah.eu/birthtimer/';
 const SUPPORTED_LANGS = [
   'en', 'fr', 'de', 'es', 'pt', 'it', 'nl', 'lb', 'fi', 'sv', 'zh', 'el', 'pl', 'cs',
   'sk', 'hu', 'ro', 'bg', 'hr', 'sl', 'lv', 'lt', 'et', 'da', 'no', 'hi', 'ar', 'bn',
@@ -11,6 +10,8 @@ const state = {
   translations: {},
   milestonesCache: [],
   timerId: null,
+  timelineTimerId: null,
+  theme: 'light',
 };
 
 const dom = {};
@@ -136,13 +137,17 @@ function startTimer() {
   if (state.timerId) {
     clearInterval(state.timerId);
   }
+  if (state.timelineTimerId) {
+    clearInterval(state.timelineTimerId);
+  }
 
   renderAges();
   state.timerId = window.setInterval(renderAges, 1000);
+  state.timelineTimerId = window.setInterval(generateMilestones, 60000);
 }
 
-function isPowerOf10(value) {
-  return Number.isInteger(Math.log10(value));
+function startsWithTenMilestone(value) {
+  return value >= 10 && Number.isInteger(Math.log10(value));
 }
 
 function generateMilestones() {
@@ -194,35 +199,44 @@ function generateMilestones() {
   state.milestonesCache = milestones;
 
   const selectedUnits = Array.from(document.querySelectorAll('.filterUnit:checked')).map((checkbox) => checkbox.value);
-  const listMarkup = milestones
-    .filter((milestone) => selectedUnits.includes(milestone.unit))
-    .map((milestone) => {
-      const isPower10 = isPowerOf10(milestone.value);
-      const dateText = milestone.date.toLocaleDateString(state.locale);
-      const timeText = getMilestoneTimeText(milestone);
-      const highlightPrefix = isPower10 ? '<span class="highlight">' : '';
-      const highlightSuffix = isPower10 ? '</span>' : '';
-      const timeAppend = timeText ? ` ${state.translations.atLabel} ${timeText}` : '';
-
-      return `<li>${state.translations.onLabel} ${dateText}${timeAppend}<br>&nbsp;&nbsp; ${highlightPrefix}➡ ${Number(milestone.value).toLocaleString(state.locale)} ${milestone.label}${highlightSuffix}</li>`;
-    })
-    .join('');
-
-  dom.milestoneList.innerHTML = listMarkup;
+  renderTimeline(milestones.filter((milestone) => selectedUnits.includes(milestone.unit)));
 }
 
-function getMilestoneTimeText(milestone) {
-  const formatter = new Intl.DateTimeFormat(state.locale, {
-    hour: '2-digit',
-    minute: '2-digit',
-    second: milestone.unit === 's' ? '2-digit' : undefined,
+function renderTimeline(milestones) {
+  dom.timeline.replaceChildren();
+  milestones.forEach((milestone) => {
+    const item = document.createElement('li');
+    item.className = `timeline-item${startsWithTenMilestone(milestone.value) ? ' is-major' : ''}`;
+
+    const date = document.createElement('time');
+    date.className = 'timeline-date';
+    date.dateTime = milestone.date.toISOString();
+    date.textContent = new Intl.DateTimeFormat(state.locale, {
+      dateStyle: 'medium',
+      timeStyle: ['s', 'mi', 'h'].includes(milestone.unit) ? 'short' : undefined,
+    }).format(milestone.date);
+
+    const title = document.createElement('strong');
+    title.className = 'timeline-title';
+    title.textContent = `${Number(milestone.value).toLocaleString(state.locale)} ${milestone.label}`;
+
+    const countdown = document.createElement('span');
+    countdown.className = 'timeline-countdown';
+    countdown.textContent = formatTimeUntil(milestone.date - new Date());
+
+    item.append(date, title, countdown);
+    dom.timeline.append(item);
   });
+}
 
-  if (['s', 'mi', 'h'].includes(milestone.unit)) {
-    return formatter.format(milestone.date);
-  }
-
-  return '';
+function formatTimeUntil(durationMs) {
+  const formatter = new Intl.RelativeTimeFormat(state.lang, { numeric: 'always' });
+  const days = Math.floor(durationMs / 86400000);
+  if (days > 0) return formatter.format(days, 'day');
+  const hours = Math.floor(durationMs / 3600000);
+  if (hours > 0) return formatter.format(hours, 'hour');
+  const minutes = Math.max(1, Math.floor(durationMs / 60000));
+  return formatter.format(minutes, 'minute');
 }
 
 function escapeIcsText(value) {
@@ -251,12 +265,14 @@ function simplifyString(value) {
 function downloadIcs() {
   dom.icsDialog.classList.add('visible');
   dom.icsDialog.setAttribute('aria-hidden', 'false');
+  dom.lastFocusedElement = document.activeElement;
   dom.personNameInput.focus();
 }
 
 function hideIcsDialog() {
   dom.icsDialog.classList.remove('visible');
   dom.icsDialog.setAttribute('aria-hidden', 'true');
+  if (dom.lastFocusedElement) dom.lastFocusedElement.focus();
 }
 
 function validateIcsDialog() {
@@ -266,7 +282,7 @@ function validateIcsDialog() {
   const selectedUnits = Array.from(document.querySelectorAll('.filterUnit:checked')).map((checkbox) => checkbox.value);
   const url = BIRTH_TIMER_URL + window.location.search;
 
-  let ics = 'BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//BirthTimer//EN\n';
+  let ics = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//BirthTimer//EN\r\n';
 
   state.milestonesCache.forEach((milestone) => {
     if (!selectedUnits.includes(milestone.unit)) {
@@ -278,22 +294,24 @@ function validateIcsDialog() {
     const summary = `${Number(milestone.value).toLocaleString(state.locale)} ${milestone.label} - ${personName}`;
     const description = `${summary} - ${state.translations.onLabel} ${dateText} ${state.translations.atLabel} ${timeText} - ${url}`;
 
-    ics += 'BEGIN:VEVENT\n';
-    ics += `SUMMARY:${escapeIcsText(summary)}\n`;
-    ics += `DESCRIPTION:${escapeIcsText(description)}\n`;
-    ics += `URL:${escapeIcsText(url)}\n`;
-    ics += `DTSTART:${formatIcsDate(milestone.date)}\n`;
-    ics += `DTEND:${formatIcsDate(new Date(milestone.date.getTime() + 3600000))}\n`;
-    ics += 'END:VEVENT\n';
+    ics += 'BEGIN:VEVENT\r\n';
+    ics += `SUMMARY:${escapeIcsText(summary)}\r\n`;
+    ics += `DESCRIPTION:${escapeIcsText(description)}\r\n`;
+    ics += `URL:${escapeIcsText(url)}\r\n`;
+    ics += `DTSTART:${formatIcsDate(milestone.date)}\r\n`;
+    ics += `DTEND:${formatIcsDate(new Date(milestone.date.getTime() + 3600000))}\r\n`;
+    ics += 'END:VEVENT\r\n';
   });
 
-  ics += 'END:VCALENDAR';
+  ics += 'END:VCALENDAR\r\n';
 
   const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
   link.download = `bx_${simplifyString(personName)}.ics`;
   link.click();
+  window.setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+  announceShareStatus(state.translations.calendarDownloaded || 'Calendar file downloaded.');
 }
 
 function updateFromInputs() {
@@ -309,13 +327,73 @@ function updateFromInputs() {
 
 function getShareContent() {
   return {
-    url: encodeURIComponent(BIRTH_TIMER_URL + window.location.search),
-    message: encodeURIComponent(`${state.translations.title2} ${state.translations.shareMessage}`),
+    url: `${window.location.origin}${window.location.pathname}${window.location.search}`,
+    message: `${state.translations.title2} ${state.translations.shareMessage}`,
   };
 }
 
 function openShareWindow(url) {
   window.open(url, '_blank', 'noopener,noreferrer,width=800,height=600');
+}
+
+function announceShareStatus(message) {
+  dom.shareStatus.textContent = message;
+}
+
+async function copyShareLink() {
+  const { url } = getShareContent();
+  try {
+    await navigator.clipboard.writeText(url);
+  } catch {
+    const temporaryInput = document.createElement('textarea');
+    temporaryInput.value = url;
+    temporaryInput.setAttribute('readonly', '');
+    temporaryInput.style.position = 'fixed';
+    temporaryInput.style.opacity = '0';
+    document.body.append(temporaryInput);
+    temporaryInput.select();
+    document.execCommand('copy');
+    temporaryInput.remove();
+  }
+  announceShareStatus(state.translations.linkCopied || 'Link copied to clipboard.');
+}
+
+async function shareNatively() {
+  const content = getShareContent();
+  if (navigator.share) {
+    try {
+      await navigator.share({ title: state.translations.title, text: content.message, url: content.url });
+    } catch (error) {
+      if (error.name !== 'AbortError') announceShareStatus(state.translations.shareFailed || 'Unable to share right now.');
+    }
+    return;
+  }
+  await copyShareLink();
+}
+
+function setTheme(theme) {
+  state.theme = theme;
+  document.documentElement.dataset.theme = theme;
+  dom.themeToggle.setAttribute('aria-pressed', String(theme === 'dark'));
+  dom.themeToggle.textContent = theme === 'dark'
+    ? (state.translations.lightTheme || 'Use light theme')
+    : (state.translations.darkTheme || 'Use dark theme');
+  try {
+    localStorage.setItem('birthtimer-theme', theme);
+  } catch {
+    // Theme still works for the current page if storage is unavailable.
+  }
+}
+
+function initTheme() {
+  let savedTheme;
+  try {
+    savedTheme = localStorage.getItem('birthtimer-theme');
+  } catch {
+    savedTheme = null;
+  }
+  const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  setTheme(savedTheme || preferred);
 }
 
 function bindEvents() {
@@ -324,6 +402,12 @@ function bindEvents() {
   dom.icalButton.addEventListener('click', downloadIcs);
   dom.cancelBtn.addEventListener('click', hideIcsDialog);
   dom.validateBtn.addEventListener('click', validateIcsDialog);
+  dom.copyLinkButton.addEventListener('click', copyShareLink);
+  dom.nativeShareButton.addEventListener('click', shareNatively);
+  dom.themeToggle.addEventListener('click', () => setTheme(state.theme === 'dark' ? 'light' : 'dark'));
+  dom.icsDialog.addEventListener('click', (event) => {
+    if (event.target === dom.icsDialog) hideIcsDialog();
+  });
   dom.personNameInput.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       hideIcsDialog();
@@ -342,22 +426,22 @@ function bindEvents() {
 
   dom.shareFacebook.addEventListener('click', () => {
     const content = getShareContent();
-    openShareWindow(`https://www.facebook.com/sharer/sharer.php?u=${content.url}&quote=${content.message}`);
+    openShareWindow(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(content.url)}&quote=${encodeURIComponent(content.message)}`);
   });
 
   dom.shareWhatsapp.addEventListener('click', () => {
     const content = getShareContent();
-    openShareWindow(`https://api.whatsapp.com/send?text=${content.message}%20${content.url}`);
+    openShareWindow(`https://api.whatsapp.com/send?text=${encodeURIComponent(`${content.message} ${content.url}`)}`);
   });
 
   dom.shareTwitter.addEventListener('click', () => {
     const content = getShareContent();
-    openShareWindow(`https://twitter.com/intent/tweet?text=${content.message}&url=${content.url}`);
+    openShareWindow(`https://twitter.com/intent/tweet?text=${encodeURIComponent(content.message)}&url=${encodeURIComponent(content.url)}`);
   });
 
   dom.shareLinkedin.addEventListener('click', () => {
     const content = getShareContent();
-    openShareWindow(`https://www.linkedin.com/shareArticle?mini=true&url=${content.url}&title=${content.message}`);
+    openShareWindow(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(content.url)}&title=${encodeURIComponent(content.message)}`);
   });
 }
 
@@ -373,6 +457,9 @@ function applyTranslations() {
   dom.personNameInput.value = state.translations.me;
   dom.validateBtn.textContent = state.translations.validate;
   dom.cancelBtn.textContent = state.translations.cancel;
+  dom.shareTitle.textContent = state.translations.shareTitle || 'Share or save your milestones';
+  dom.nativeShareButton.textContent = state.translations.shareButton || 'Share';
+  dom.copyLinkButton.textContent = state.translations.copyLink || 'Copy link';
 
   dom.filters.innerHTML = [
     { unit: 'y', label: state.translations.filterYears, checked: false },
@@ -389,6 +476,7 @@ function applyTranslations() {
   document.querySelectorAll('.filterUnit').forEach((checkbox) => {
     checkbox.addEventListener('change', generateMilestones);
   });
+  setTheme(state.theme);
 }
 
 function fetchTranslations() {
@@ -458,8 +546,13 @@ function cacheDom() {
   dom.myAge = document.getElementById('myAge');
   dom.durationList = document.getElementById('durationList');
   dom.myNextMilestones = document.getElementById('myNextMilestones');
-  dom.milestoneList = document.getElementById('milestoneList');
+  dom.timeline = document.getElementById('timeline');
   dom.filters = document.getElementById('filters');
+  dom.themeToggle = document.getElementById('themeToggle');
+  dom.shareTitle = document.getElementById('shareTitle');
+  dom.nativeShareButton = document.getElementById('nativeShareButton');
+  dom.copyLinkButton = document.getElementById('copyLinkButton');
+  dom.shareStatus = document.getElementById('shareStatus');
   dom.icalButton = document.getElementById('icalButton');
   dom.shareFacebook = document.getElementById('share-facebook');
   dom.shareWhatsapp = document.getElementById('share-whatsapp');
@@ -477,6 +570,7 @@ function main() {
   state.lang = getLanguageFromBrowser();
   state.locale = getURLParam('locale') || navigator.language || navigator.userLanguage || 'en-IE';
   bindEvents();
+  initTheme();
   fetchTranslations();
 }
 

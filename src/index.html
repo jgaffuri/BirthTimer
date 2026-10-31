@@ -21,6 +21,7 @@
     <div class="container">
       <h1><a href="https://www.ahahah.eu/birthtimer/"><span id="title">BirthTimer</span></a></h1>
       <p id="intro" class="intro">Why celebrate birthdays only once a year?</p>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false">Use dark theme</button>
     </div>
   </header>
 
@@ -43,11 +44,15 @@
 
     <section class="panel" id="xiversaires">
       <h2 id="myNextMilestones">My next birth-Xs</h2>
-      <ul id="milestoneList" class="milestone-list"></ul>
+      <ol id="timeline" class="timeline" aria-label="Upcoming milestone timeline"></ol>
       <div class="filters" id="filters" aria-label="Milestone filters"></div>
     </section>
 
     <section class="panel share-panel" id="share">
+      <h2 id="shareTitle">Share or save your milestones</h2>
+      <div class="share-actions">
+        <button id="nativeShareButton" class="action-button" type="button">Share</button>
+        <button id="copyLinkButton" class="action-button secondary" type="button">Copy link</button>
       <a href="javascript:void(0);" id="icalButton" class="share-button" aria-label="Add to calendar" title="Add to calendar">
         <img src="img/ical.png" alt="iCal icon">
       </a>
@@ -63,6 +68,8 @@
       <a href="javascript:void(0);" id="share-twitter" class="share-button" aria-label="Share on Twitter/X" title="Share on Twitter/X">
         <img src="img/twitter.png" alt="Twitter/X icon">
       </a>
+      </div>
+      <p id="shareStatus" class="share-status" role="status" aria-live="polite"></p>
     </section>
   </main>
 
@@ -78,7 +85,7 @@
   </div>
 
   <footer class="site-footer">
-    <p>© 2025 <a href="https://www.ahahah.eu/birthtimer/">BirthTimer</a></p>
+    <p>© 2026 <a href="https://www.ahahah.eu/birthtimer/">BirthTimer</a></p>
   </footer>
 </body>
 
