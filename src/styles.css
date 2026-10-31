@@ -296,6 +296,12 @@ h2 {
   object-fit: contain;
 }
 
+.share-network-name {
+  font-size: 0.8rem;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
 .ics-dialog {
   position: fixed;
   inset: 0;
