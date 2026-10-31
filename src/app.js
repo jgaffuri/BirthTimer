@@ -269,9 +269,23 @@ function foldIcsLine(line) {
   return foldedLine;
 }
 
-function getIcsUid(start, milestone) {
+function getIcsUidNamespace() {
+  const storageKey = 'birthtimer-calendar-uid';
+  try {
+    let uid = localStorage.getItem(storageKey);
+    if (!uid) {
+      uid = crypto.randomUUID();
+      localStorage.setItem(storageKey, uid);
+    }
+    return uid;
+  } catch {
+    return crypto.randomUUID();
+  }
+}
+
+function getIcsUid(namespace, start, milestone) {
   const value = String(milestone.value).replace('.', '-');
-  return `birthtimer-${start.getTime()}-${milestone.unit}-${value}@ahahah.eu`;
+  return `${namespace}-${start.getTime()}-${milestone.unit}-${value}@birthtimer.ahahah.eu`;
 }
 
 function simplifyString(value) {
@@ -298,16 +312,18 @@ function hideIcsDialog() {
 }
 
 function validateIcsDialog() {
+  const start = parseSelectedStart();
+  if (!start) {
+    announceShareStatus(state.translations.shareFailed || 'Unable to share right now.');
+    return;
+  }
+
   const personName = dom.personNameInput.value.trim() || state.translations.me;
   hideIcsDialog();
 
   const selectedUnits = Array.from(document.querySelectorAll('.filterUnit:checked')).map((checkbox) => checkbox.value);
-  const url = BIRTH_TIMER_URL + window.location.search;
-  const start = parseSelectedStart();
-  if (!start) {
-    return;
-  }
-
+  const url = `${window.location.origin}${window.location.pathname}${window.location.search}`;
+  const uidNamespace = getIcsUidNamespace();
   const timestamp = formatIcsDate(new Date());
   const lines = [
     'BEGIN:VCALENDAR',
@@ -328,7 +344,7 @@ function validateIcsDialog() {
 
     lines.push(
       'BEGIN:VEVENT',
-      `UID:${getIcsUid(start, milestone)}`,
+      `UID:${getIcsUid(uidNamespace, start, milestone)}`,
       `DTSTAMP:${timestamp}`,
       `SUMMARY:${escapeIcsText(summary)}`,
       `DESCRIPTION:${escapeIcsText(description)}`,

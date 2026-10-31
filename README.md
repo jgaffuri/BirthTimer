@@ -16,15 +16,5 @@ The interface includes a concise age summary, an upcoming-milestone timeline, a 
 - `src/app.js` — age calculation, milestone generation, translation handling, sharing and calendar export
 - `src/lang.json` — translations
 
-## Running locally
-From the repository root:
-
-```bash
-cd src
-python3 -m http.server 8000
-```
-
-Then open `http://localhost:8000` in a browser.
-
 ## Notes
 This project is intentionally lightweight: no backend, no build step, just static HTML/CSS/JS.
