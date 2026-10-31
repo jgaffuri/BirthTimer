@@ -457,7 +457,7 @@ function applyTranslations() {
   dom.personNameInput.value = state.translations.me;
   dom.validateBtn.textContent = state.translations.validate;
   dom.cancelBtn.textContent = state.translations.cancel;
-  dom.shareTitle.textContent = state.translations.shareTitle || 'Share or save your milestones';
+  dom.shareTitle.textContent = state.translations.shareTitle || 'Share and save';
   dom.nativeShareButton.textContent = state.translations.shareButton || 'Share';
   dom.copyLinkButton.textContent = state.translations.copyLink || 'Copy link';
 
@@ -522,6 +522,7 @@ function fetchTranslations() {
         minutes: 'minutes',
         seconds: 'seconds',
         onLabel: 'On ',
+        shareTitle: 'Share and save',
         shareMessage: 'Here is the list of my next birth-Xs!',
       };
       state.locale = 'en-US';

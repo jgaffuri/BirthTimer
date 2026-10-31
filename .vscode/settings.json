@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^python -c \"import json; d=json\\.load\\(open\\('src/lang\\.json'\\)\\); print\\('\\\\n'\\.join\\(f'\\{k\\}: \\{v\\.get\\(\\\\\"shareTitle\\\\\", \\\\\"<missing>\\\\\"\\)\\}' for k,v in d\\.items\\(\\)\\)\\); print\\('LANGUAGES', len\\(d\\)\\)\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
