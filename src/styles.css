@@ -110,30 +110,42 @@ img {
 .header-confetti span:nth-child(5n + 4) { --confetti-color: #ff8fab; }
 .header-confetti span:nth-child(5n) { --confetti-color: #fff; }
 
-.header-confetti span:nth-child(1) { --confetti-left: 3%; --fall-duration: 9s; --fall-delay: -7s; --twirl-duration: 2.2s; --twirl-delay: -1s; }
-.header-confetti span:nth-child(2) { --confetti-left: 8%; --fall-duration: 12s; --fall-delay: -3s; --twirl-duration: 1.8s; --twirl-delay: -1.4s; }
-.header-confetti span:nth-child(3) { --confetti-left: 13%; --fall-duration: 8s; --fall-delay: -6s; --twirl-duration: 2.8s; --twirl-delay: -2s; }
-.header-confetti span:nth-child(4) { --confetti-left: 18%; --fall-duration: 14s; --fall-delay: -10s; --twirl-duration: 2s; --twirl-delay: -0.5s; }
-.header-confetti span:nth-child(5) { --confetti-left: 23%; --fall-duration: 10s; --fall-delay: -2s; --twirl-duration: 2.5s; --twirl-delay: -1.8s; }
-.header-confetti span:nth-child(6) { --confetti-left: 28%; --fall-duration: 13s; --fall-delay: -8s; --twirl-duration: 1.7s; --twirl-delay: -0.8s; }
-.header-confetti span:nth-child(7) { --confetti-left: 33%; --fall-duration: 9s; --fall-delay: -4s; --twirl-duration: 2.4s; --twirl-delay: -1.6s; }
-.header-confetti span:nth-child(8) { --confetti-left: 38%; --fall-duration: 15s; --fall-delay: -12s; --twirl-duration: 2s; --twirl-delay: -1.2s; }
-.header-confetti span:nth-child(9) { --confetti-left: 43%; --fall-duration: 11s; --fall-delay: -5s; --twirl-duration: 2.7s; --twirl-delay: -0.4s; }
-.header-confetti span:nth-child(10) { --confetti-left: 48%; --fall-duration: 8s; --fall-delay: -7s; --twirl-duration: 1.9s; --twirl-delay: -1.7s; }
-.header-confetti span:nth-child(11) { --confetti-left: 53%; --fall-duration: 13s; --fall-delay: -3s; --twirl-duration: 2.3s; --twirl-delay: -0.9s; }
-.header-confetti span:nth-child(12) { --confetti-left: 58%; --fall-duration: 10s; --fall-delay: -9s; --twirl-duration: 1.8s; --twirl-delay: -1.3s; }
-.header-confetti span:nth-child(13) { --confetti-left: 63%; --fall-duration: 14s; --fall-delay: -6s; --twirl-duration: 2.6s; --twirl-delay: -0.7s; }
-.header-confetti span:nth-child(14) { --confetti-left: 68%; --fall-duration: 9s; --fall-delay: -2s; --twirl-duration: 2.1s; --twirl-delay: -1.5s; }
-.header-confetti span:nth-child(15) { --confetti-left: 73%; --fall-duration: 12s; --fall-delay: -11s; --twirl-duration: 1.7s; --twirl-delay: -0.3s; }
-.header-confetti span:nth-child(16) { --confetti-left: 78%; --fall-duration: 8s; --fall-delay: -5s; --twirl-duration: 2.5s; --twirl-delay: -1.1s; }
-.header-confetti span:nth-child(17) { --confetti-left: 83%; --fall-duration: 15s; --fall-delay: -8s; --twirl-duration: 2s; --twirl-delay: -1.9s; }
-.header-confetti span:nth-child(18) { --confetti-left: 88%; --fall-duration: 10s; --fall-delay: -4s; --twirl-duration: 2.8s; --twirl-delay: -0.6s; }
-.header-confetti span:nth-child(19) { --confetti-left: 93%; --fall-duration: 13s; --fall-delay: -12s; --twirl-duration: 1.9s; --twirl-delay: -1.4s; }
-.header-confetti span:nth-child(20) { --confetti-left: 98%; --fall-duration: 9s; --fall-delay: -6s; --twirl-duration: 2.3s; --twirl-delay: -0.2s; }
-.header-confetti span:nth-child(21) { --confetti-left: 5%; --fall-duration: 11s; --fall-delay: -9s; --twirl-duration: 1.8s; --twirl-delay: -1.7s; }
-.header-confetti span:nth-child(22) { --confetti-left: 31%; --fall-duration: 14s; --fall-delay: -1s; --twirl-duration: 2.6s; --twirl-delay: -1s; }
-.header-confetti span:nth-child(23) { --confetti-left: 66%; --fall-duration: 8s; --fall-delay: -10s; --twirl-duration: 2s; --twirl-delay: -0.5s; }
-.header-confetti span:nth-child(24) { --confetti-left: 95%; --fall-duration: 12s; --fall-delay: -4s; --twirl-duration: 2.4s; --twirl-delay: -1.3s; }
+.header-confetti span:nth-child(1) { --confetti-left: 3%; --fall-duration: 4.5s; --fall-delay: -7s; --twirl-duration: 2.2s; --twirl-delay: -1s; }
+.header-confetti span:nth-child(2) { --confetti-left: 8%; --fall-duration: 6s; --fall-delay: -3s; --twirl-duration: 1.8s; --twirl-delay: -1.4s; }
+.header-confetti span:nth-child(3) { --confetti-left: 13%; --fall-duration: 4s; --fall-delay: -6s; --twirl-duration: 2.8s; --twirl-delay: -2s; }
+.header-confetti span:nth-child(4) { --confetti-left: 18%; --fall-duration: 7s; --fall-delay: -10s; --twirl-duration: 2s; --twirl-delay: -0.5s; }
+.header-confetti span:nth-child(5) { --confetti-left: 23%; --fall-duration: 5s; --fall-delay: -2s; --twirl-duration: 2.5s; --twirl-delay: -1.8s; }
+.header-confetti span:nth-child(6) { --confetti-left: 28%; --fall-duration: 6.5s; --fall-delay: -8s; --twirl-duration: 1.7s; --twirl-delay: -0.8s; }
+.header-confetti span:nth-child(7) { --confetti-left: 33%; --fall-duration: 4.5s; --fall-delay: -4s; --twirl-duration: 2.4s; --twirl-delay: -1.6s; }
+.header-confetti span:nth-child(8) { --confetti-left: 38%; --fall-duration: 7.5s; --fall-delay: -12s; --twirl-duration: 2s; --twirl-delay: -1.2s; }
+.header-confetti span:nth-child(9) { --confetti-left: 43%; --fall-duration: 5.5s; --fall-delay: -5s; --twirl-duration: 2.7s; --twirl-delay: -0.4s; }
+.header-confetti span:nth-child(10) { --confetti-left: 48%; --fall-duration: 4s; --fall-delay: -7s; --twirl-duration: 1.9s; --twirl-delay: -1.7s; }
+.header-confetti span:nth-child(11) { --confetti-left: 53%; --fall-duration: 6.5s; --fall-delay: -3s; --twirl-duration: 2.3s; --twirl-delay: -0.9s; }
+.header-confetti span:nth-child(12) { --confetti-left: 58%; --fall-duration: 5s; --fall-delay: -9s; --twirl-duration: 1.8s; --twirl-delay: -1.3s; }
+.header-confetti span:nth-child(13) { --confetti-left: 63%; --fall-duration: 7s; --fall-delay: -6s; --twirl-duration: 2.6s; --twirl-delay: -0.7s; }
+.header-confetti span:nth-child(14) { --confetti-left: 68%; --fall-duration: 4.5s; --fall-delay: -2s; --twirl-duration: 2.1s; --twirl-delay: -1.5s; }
+.header-confetti span:nth-child(15) { --confetti-left: 73%; --fall-duration: 6s; --fall-delay: -11s; --twirl-duration: 1.7s; --twirl-delay: -0.3s; }
+.header-confetti span:nth-child(16) { --confetti-left: 78%; --fall-duration: 4s; --fall-delay: -5s; --twirl-duration: 2.5s; --twirl-delay: -1.1s; }
+.header-confetti span:nth-child(17) { --confetti-left: 83%; --fall-duration: 7.5s; --fall-delay: -8s; --twirl-duration: 2s; --twirl-delay: -1.9s; }
+.header-confetti span:nth-child(18) { --confetti-left: 88%; --fall-duration: 5s; --fall-delay: -4s; --twirl-duration: 2.8s; --twirl-delay: -0.6s; }
+.header-confetti span:nth-child(19) { --confetti-left: 93%; --fall-duration: 6.5s; --fall-delay: -12s; --twirl-duration: 1.9s; --twirl-delay: -1.4s; }
+.header-confetti span:nth-child(20) { --confetti-left: 98%; --fall-duration: 4.5s; --fall-delay: -6s; --twirl-duration: 2.3s; --twirl-delay: -0.2s; }
+.header-confetti span:nth-child(21) { --confetti-left: 5%; --fall-duration: 5.5s; --fall-delay: -9s; --twirl-duration: 1.8s; --twirl-delay: -1.7s; }
+.header-confetti span:nth-child(22) { --confetti-left: 31%; --fall-duration: 7s; --fall-delay: -1s; --twirl-duration: 2.6s; --twirl-delay: -1s; }
+.header-confetti span:nth-child(23) { --confetti-left: 66%; --fall-duration: 4s; --fall-delay: -10s; --twirl-duration: 2s; --twirl-delay: -0.5s; }
+.header-confetti span:nth-child(24) { --confetti-left: 95%; --fall-duration: 6s; --fall-delay: -4s; --twirl-duration: 2.4s; --twirl-delay: -1.3s; }
+.header-confetti span:nth-child(25) { --confetti-left: 1%; --fall-duration: 5.5s; --fall-delay: -2s; --twirl-duration: 1.9s; --twirl-delay: -0.8s; }
+.header-confetti span:nth-child(26) { --confetti-left: 11%; --fall-duration: 4.5s; --fall-delay: -8s; --twirl-duration: 2.7s; --twirl-delay: -1.6s; }
+.header-confetti span:nth-child(27) { --confetti-left: 21%; --fall-duration: 7s; --fall-delay: -5s; --twirl-duration: 2.1s; --twirl-delay: -0.3s; }
+.header-confetti span:nth-child(28) { --confetti-left: 36%; --fall-duration: 4s; --fall-delay: -11s; --twirl-duration: 2.4s; --twirl-delay: -1.2s; }
+.header-confetti span:nth-child(29) { --confetti-left: 46%; --fall-duration: 6.5s; --fall-delay: -4s; --twirl-duration: 1.8s; --twirl-delay: -1.9s; }
+.header-confetti span:nth-child(30) { --confetti-left: 56%; --fall-duration: 5s; --fall-delay: -9s; --twirl-duration: 2.8s; --twirl-delay: -0.6s; }
+.header-confetti span:nth-child(31) { --confetti-left: 61%; --fall-duration: 7.5s; --fall-delay: -1s; --twirl-duration: 2s; --twirl-delay: -1.4s; }
+.header-confetti span:nth-child(32) { --confetti-left: 71%; --fall-duration: 4.5s; --fall-delay: -7s; --twirl-duration: 2.5s; --twirl-delay: -0.5s; }
+.header-confetti span:nth-child(33) { --confetti-left: 81%; --fall-duration: 6s; --fall-delay: -3s; --twirl-duration: 1.7s; --twirl-delay: -1.1s; }
+.header-confetti span:nth-child(34) { --confetti-left: 86%; --fall-duration: 5s; --fall-delay: -10s; --twirl-duration: 2.3s; --twirl-delay: -1.7s; }
+.header-confetti span:nth-child(35) { --confetti-left: 91%; --fall-duration: 4s; --fall-delay: -6s; --twirl-duration: 2.6s; --twirl-delay: -0.9s; }
+.header-confetti span:nth-child(36) { --confetti-left: 99%; --fall-duration: 7s; --fall-delay: -12s; --twirl-duration: 1.9s; --twirl-delay: -1.3s; }
 
 @keyframes confetti-fall {
   to { top: 112%; }
