@@ -439,9 +439,11 @@ function setTheme(theme) {
   state.theme = theme;
   document.documentElement.dataset.theme = theme;
   dom.themeToggle.setAttribute('aria-pressed', String(theme === 'dark'));
-  dom.themeToggle.textContent = theme === 'dark'
+  const label = theme === 'dark'
     ? (state.translations.lightTheme || 'Use light theme')
     : (state.translations.darkTheme || 'Use dark theme');
+  dom.themeToggle.setAttribute('aria-label', label);
+  dom.themeToggle.title = label;
   try {
     localStorage.setItem('birthtimer-theme', theme);
   } catch {

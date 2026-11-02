@@ -12,6 +12,9 @@
   <link rel="canonical" href="https://www.ahahah.eu/birthtimer/" />
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png">
   <title>BirthTimer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
@@ -29,7 +32,15 @@
     <div class="container">
       <h1><a href="https://www.ahahah.eu/birthtimer/"><span id="title">My next birthdays, from seconds to years</span></a></h1>
       <p id="intro" class="intro">Why celebrate birthdays only once a year?</p>
-      <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false">Use dark theme</button>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Use dark theme" title="Use dark theme" aria-pressed="false">
+        <svg data-theme-icon="sun" aria-hidden="true" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path>
+        </svg>
+        <svg data-theme-icon="moon" aria-hidden="true" viewBox="0 0 24 24">
+          <path d="M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5 8.5 8.5 0 1 0 20.5 15.5Z"></path>
+        </svg>
+      </button>
     </div>
   </header>
 

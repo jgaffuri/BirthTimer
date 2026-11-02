@@ -38,7 +38,7 @@ html {
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Nunito", Arial, Helvetica, sans-serif;
   line-height: 1.6;
   background:
     radial-gradient(ellipse at 8% 15%, rgba(255, 206, 117, 0.18), transparent 28rem),
@@ -163,6 +163,8 @@ img {
 
 .site-header h1 {
   margin: 0;
+  font-family: "Fredoka", "Trebuchet MS", sans-serif;
+  font-weight: 600;
   font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.1;
   text-wrap: balance;
@@ -175,11 +177,41 @@ img {
 }
 
 .theme-toggle {
-  margin-top: 16px;
+  position: absolute;
+  top: -42px;
+  right: 0;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 8px;
   background: rgba(255, 255, 255, 0.14);
   border: 1px solid rgba(255, 255, 255, 0.4);
   color: #fff;
+  border-radius: 50%;
   backdrop-filter: blur(8px);
+}
+
+.theme-toggle svg {
+  display: none;
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+:root:not([data-theme='dark']) .theme-toggle [data-theme-icon='moon'],
+:root[data-theme='dark'] .theme-toggle [data-theme-icon='sun'] {
+  display: block;
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
 }
 
 .intro {
